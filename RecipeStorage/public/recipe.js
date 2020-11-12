@@ -2,126 +2,10 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/services.js":
-/*!*************************!*\
-  !*** ./src/services.js ***!
-  \*************************/
-/*! namespace exports */
-/*! export checkLoginStatus [provided] [no usage info] [missing usage info prevents renaming] */
-/*! export getRecipes [provided] [no usage info] [missing usage info prevents renaming] */
-/*! export getTodos [provided] [no usage info] [missing usage info prevents renaming] */
-/*! export performLogin [provided] [no usage info] [missing usage info prevents renaming] */
-/*! export performLogout [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "checkLoginStatus": () => /* binding */ checkLoginStatus,
-/* harmony export */   "performLogin": () => /* binding */ performLogin,
-/* harmony export */   "performLogout": () => /* binding */ performLogout,
-/* harmony export */   "getTodos": () => /* binding */ getTodos,
-/* harmony export */   "getRecipes": () => /* binding */ getRecipes
-/* harmony export */ });
-var checkLoginStatus = function checkLoginStatus() {
-  return fetch('/session', {
-    method: 'GET'
-  })["catch"](function () {
-    return Promise.reject({
-      error: 'network-error'
-    });
-  }).then(function (response) {
-    if (response.ok) {
-      return response.json();
-    }
-
-    return response.json().then(function (err) {
-      return Promise.reject(err);
-    });
-  });
-};
-var performLogin = function performLogin(username) {
-  return fetch('/session', {
-    method: 'POST',
-    headers: new Headers({
-      'content-type': 'application/json'
-    }),
-    body: JSON.stringify({
-      username: username
-    })
-  })["catch"](function () {
-    return Promise.reject({
-      error: 'network-error'
-    });
-  }).then(function (response) {
-    if (response.ok) {
-      return response.json();
-    }
-
-    return response.json().then(function (err) {
-      return Promise.reject(err);
-    });
-  });
-};
-var performLogout = function performLogout() {
-  return fetch('/session', {
-    method: 'DELETE'
-  })["catch"](function () {
-    return Promise.reject({
-      error: 'network-error'
-    });
-  }).then(function (response) {
-    if (response.ok) {
-      return response.json();
-    }
-
-    return response.json().then(function (err) {
-      return Promise.reject(err);
-    });
-  });
-};
-var getTodos = function getTodos() {
-  return fetch('/todos', {
-    method: 'GET'
-  })["catch"](function () {
-    return Promise.reject({
-      error: 'network-error'
-    });
-  }).then(function (response) {
-    if (response.ok) {
-      return response.json();
-    }
-
-    return response.json().then(function (err) {
-      return Promise.reject(err);
-    });
-  });
-};
-var getRecipes = function getRecipes() {
-  return fetch('/recipes', {
-    method: 'GET'
-  })["catch"](function () {
-    return Promise.reject({
-      error: 'network-error'
-    });
-  }).then(function (response) {
-    if (response.ok) {
-      return response.json();
-    }
-
-    return response.json().then(function (err) {
-      return Promise.reject(err);
-    });
-  });
-};
-
-/***/ }),
-
-/***/ "./src/todo.js":
-/*!*********************!*\
-  !*** ./src/todo.js ***!
-  \*********************/
+/***/ "./src/recipe.js":
+/*!***********************!*\
+  !*** ./src/recipe.js ***!
+  \***********************/
 /*! namespace exports */
 /*! exports [not provided] [no usage info] */
 /*! runtime requirements: __webpack_require__, __webpack_require__.r, __webpack_exports__, __webpack_require__.* */
@@ -251,25 +135,12 @@ __webpack_require__.r(__webpack_exports__);
   }
 
   function renderRecipes(recipes) {
-    console.log(recipes);
     var html = '';
 
     for (var recipe_id in recipes) {
       var recipe = recipes[recipe_id];
       html += "\n        <div class=\"card\">\n          <div class=\"card__body\">\n            <img src=\"".concat(recipe.image, "\" alt=\"image for ").concat(recipe.title, "\" class=\"card__image\">\n            <h2 class=\"card__title\">").concat(recipe.title, "</h2>\n            <p class=\"card__description\">").concat(recipe.description, "</p>\n          </div>\n          <button class=\"card__btn\">View Recipe</button>\n        </div>");
     }
-
-    console.log(html); // const html = recipes.forEach(function(recipe, recipe_id) {
-    //   console.log(recipe_id);
-    //   return `
-    //   <li data-index="${recipe_id}">
-    //     <h2>${recipe.title}</h2>
-    //     <p>${recipe.author}</p>
-    //     <p>${recipe.description}</p>
-    //     <p>${recipe.ingredients}</p>
-    //     <p>${recipe.instructions}</p>
-    //   </li>`;
-    // }).join("\n");
 
     recipeListEl.innerHTML = html;
     addTaskButton.disabled = !taskInputEl.value;
@@ -363,6 +234,122 @@ __webpack_require__.r(__webpack_exports__);
   });
 })();
 
+/***/ }),
+
+/***/ "./src/services.js":
+/*!*************************!*\
+  !*** ./src/services.js ***!
+  \*************************/
+/*! namespace exports */
+/*! export checkLoginStatus [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export getRecipes [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export getTodos [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export performLogin [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export performLogout [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "checkLoginStatus": () => /* binding */ checkLoginStatus,
+/* harmony export */   "performLogin": () => /* binding */ performLogin,
+/* harmony export */   "performLogout": () => /* binding */ performLogout,
+/* harmony export */   "getTodos": () => /* binding */ getTodos,
+/* harmony export */   "getRecipes": () => /* binding */ getRecipes
+/* harmony export */ });
+var checkLoginStatus = function checkLoginStatus() {
+  return fetch('/session', {
+    method: 'GET'
+  })["catch"](function () {
+    return Promise.reject({
+      error: 'network-error'
+    });
+  }).then(function (response) {
+    if (response.ok) {
+      return response.json();
+    }
+
+    return response.json().then(function (err) {
+      return Promise.reject(err);
+    });
+  });
+};
+var performLogin = function performLogin(username) {
+  return fetch('/session', {
+    method: 'POST',
+    headers: new Headers({
+      'content-type': 'application/json'
+    }),
+    body: JSON.stringify({
+      username: username
+    })
+  })["catch"](function () {
+    return Promise.reject({
+      error: 'network-error'
+    });
+  }).then(function (response) {
+    if (response.ok) {
+      return response.json();
+    }
+
+    return response.json().then(function (err) {
+      return Promise.reject(err);
+    });
+  });
+};
+var performLogout = function performLogout() {
+  return fetch('/session', {
+    method: 'DELETE'
+  })["catch"](function () {
+    return Promise.reject({
+      error: 'network-error'
+    });
+  }).then(function (response) {
+    if (response.ok) {
+      return response.json();
+    }
+
+    return response.json().then(function (err) {
+      return Promise.reject(err);
+    });
+  });
+};
+var getTodos = function getTodos() {
+  return fetch('/todos', {
+    method: 'GET'
+  })["catch"](function () {
+    return Promise.reject({
+      error: 'network-error'
+    });
+  }).then(function (response) {
+    if (response.ok) {
+      return response.json();
+    }
+
+    return response.json().then(function (err) {
+      return Promise.reject(err);
+    });
+  });
+};
+var getRecipes = function getRecipes() {
+  return fetch('/recipes', {
+    method: 'GET'
+  })["catch"](function () {
+    return Promise.reject({
+      error: 'network-error'
+    });
+  }).then(function (response) {
+    if (response.ok) {
+      return response.json();
+    }
+
+    return response.json().then(function (err) {
+      return Promise.reject(err);
+    });
+  });
+};
+
 /***/ })
 
 /******/ 	});
@@ -422,8 +409,8 @@ __webpack_require__.r(__webpack_exports__);
 /************************************************************************/
 /******/ 	// startup
 /******/ 	// Load entry module
-/******/ 	__webpack_require__("./src/todo.js");
+/******/ 	__webpack_require__("./src/recipe.js");
 /******/ 	// This entry module used 'exports' so it can't be inlined
 /******/ })()
 ;
-//# sourceMappingURL=todo.js.map
+//# sourceMappingURL=recipe.js.map

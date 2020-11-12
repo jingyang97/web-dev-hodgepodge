@@ -1,10 +1,10 @@
 const path = require('path');
 module.exports = {
   mode: 'development',
-  entry: './src/todo.js',
+  entry: './src/recipe.js',
   devtool: 'source-map',
   output: {
-    filename: 'todo.js',
+    filename: 'recipe.js',
     path: path.resolve(__dirname, 'public'),
   },
   module: {

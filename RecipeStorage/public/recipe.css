@@ -198,6 +198,12 @@ ul li{
 .card :hover {
   transform: scale(1.02);
 }
+
+.card :hover .card__btn {
+    background: red;
+    color: white;
+  }
+
 .card__image {
     height: 12rem;
     width: 100%;
@@ -228,8 +234,4 @@ ul li{
   }
 
 
-.card__btn :hover {
-    background: var(--clr-primary);
-    color: white;
-  }
 

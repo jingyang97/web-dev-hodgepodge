@@ -184,10 +184,6 @@ import
 
   function renderRecipes(recipes)
   {
-    console.log(recipes);
-
-
-
     let html = '';
     for (const recipe_id in recipes) {
       const recipe = recipes[recipe_id];
@@ -201,21 +197,6 @@ import
           <button class="card__btn">View Recipe</button>
         </div>`;
     }
-    console.log(html);
-
-
-    // const html = recipes.forEach(function(recipe, recipe_id) {
-    //   console.log(recipe_id);
-    //   return `
-    //   <li data-index="${recipe_id}">
-    //     <h2>${recipe.title}</h2>
-    //     <p>${recipe.author}</p>
-    //     <p>${recipe.description}</p>
-    //     <p>${recipe.ingredients}</p>
-    //     <p>${recipe.instructions}</p>
-    //   </li>`;
-    // }).join("\n");
-
     recipeListEl.innerHTML = html;
     addTaskButton.disabled = !taskInputEl.value;
   }

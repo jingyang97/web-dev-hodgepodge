@@ -2,11 +2,12 @@
 
 
 import
-{
-  checkLoginStatus,
-  getTodos, performLogin,
-  performLogout
-} from './services';
+  {
+    checkLoginStatus,
+
+    getRecipes, performLogin,
+    performLogout
+  } from './services';
 
 
 (function iife()
@@ -33,12 +34,15 @@ import
   const taskInputEl = document.querySelector('#todo-app .add-task');
   const addTaskButton = document.querySelector('#todo-app .addTask-button');
 
+  const recipeListEl = document.querySelector('main .recipe-list');
+
   const listEl = document.querySelector('#todo-app .todos');
 
 
   disableButtonIfNoInput();
   addLogin();
   addLogout();
+
   addAbilityToCompleteItems();
   addAbilityToAddItems();
   addAbilityToDeleteItems();
@@ -65,16 +69,16 @@ import
     {
       appState.pollId = setInterval(() =>
       {
-        getTodos()
+        getRecipes()
           .catch((err) =>
           {
             updateStatus(errMsgs[err.error] || err.error);
           })
-          .then(todos =>
+          .then(recipes =>
           {
             appState.error = '';
-            appState.todos = todos;
-            renderTodos(todos);
+            appState.todos = recipes;
+            renderRecipes(recipes);
           });
       }, 3000);
     }
@@ -127,11 +131,12 @@ import
         {
 
           appState.isLoggedIn = true;
-          appState.todos = userInfo.todos;
+          appState.todos = userInfo;
           appState.error = '';
           poll(true);
           showContent();
-          renderTodos(userInfo.todos);
+          // renderTodos(userInfo.todos);
+          renderRecipes(userInfo);
         })
         .catch(err =>
         {
@@ -177,6 +182,43 @@ import
     addTaskButton.disabled = !taskInputEl.value;
   }
 
+  function renderRecipes(recipes)
+  {
+    console.log(recipes);
+
+
+
+    let html = '';
+    for (const recipe_id in recipes) {
+      const recipe = recipes[recipe_id];
+      html += `
+        <div class="card">
+          <div class="card__body">
+            <img src="${recipe.image}" alt="image for ${recipe.title}" class="card__image">
+            <h2 class="card__title">${recipe.title}</h2>
+            <p class="card__description">${recipe.description}</p>
+          </div>
+          <button class="card__btn">View Recipe</button>
+        </div>`;
+    }
+    console.log(html);
+
+
+    // const html = recipes.forEach(function(recipe, recipe_id) {
+    //   console.log(recipe_id);
+    //   return `
+    //   <li data-index="${recipe_id}">
+    //     <h2>${recipe.title}</h2>
+    //     <p>${recipe.author}</p>
+    //     <p>${recipe.description}</p>
+    //     <p>${recipe.ingredients}</p>
+    //     <p>${recipe.instructions}</p>
+    //   </li>`;
+    // }).join("\n");
+
+    recipeListEl.innerHTML = html;
+    addTaskButton.disabled = !taskInputEl.value;
+  }
 
   function disableButtonIfNoInput()
   {
@@ -234,6 +276,7 @@ import
         {
           taskInputEl.value = '';
           renderTodos(todos);
+
           updateStatus('');
         })
         .catch(err =>
@@ -272,14 +315,15 @@ import
     });
   }
 
-  fetch('/todos/', {
+  fetch('/recipes/', {
     method: 'GET',
   })
     .catch(() => Promise.reject({ error: 'network-error' }))
     .then(convertError)
-    .then(todos =>
+    .then(recipes =>
     {
-      renderTodos(todos);
+
+      renderRecipes(recipes);
       updateStatus('');
     })
     .catch(err =>

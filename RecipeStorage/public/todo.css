@@ -1,6 +1,22 @@
+:root {
+  /*   color variables */
+  --clr-primary: #d50000;
+  --clr-primary-hover: #29e6a7;
+  --clr-primary-dark: #039d69;
+  --clr-gray100: #f0f7f8;
+  --clr-gray200: #cfd8dc;
+  --clr-gray300: #a7b7be;
+  --clr-gray400: #6b7e86;
+  --clr-gray500: #425a65;
+
+  /*   border radius */
+  --radius: 0.2rem;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
+  padding: 0;
 }
 body {
   min-height: 450px;
@@ -8,8 +24,13 @@ body {
   margin: 0;
   background: pink;
   color: #fff;
-  font-family: 'sans-serif', serif;
+  font-family: Oxygen, sans-serif;
 }
+
+
+
+
+
 button, input, select, textarea {
   font-family: inherit;
   font-size: inherit;
@@ -54,15 +75,17 @@ ul li{
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 360px;
-  height: 500px;
+  width: 90%;
+  min-height: 90%;
+  height: auto;
+
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 7px 30px rgba(62, 9, 11, .3);
 }
 .cover-img .cover-inner {
-  background: url('https://cdn.lynda.com/course/427444/427444-637286181487575557-16x9.jpg');
-  height: 190px;
+  background: url('/images/cover.jpg');
+  height: 300px;
   background-size: cover;
   background-position: 10% 20%;
   border-top-left-radius: 10px;
@@ -80,7 +103,7 @@ ul li{
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
-.cover-img h4 {
+.cover-img a {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -108,7 +131,7 @@ ul li{
   margin-left: 0;
   padding: 0;
   letter-spacing: none;
-  height: 220px;
+  height: 90%;
   overflow: auto;
 }
 .content li {
@@ -125,4 +148,88 @@ ul li{
   padding: 5px 10px;
 }
 
+
+.recipe-list {
+  font-family: Oxygen, sans-serif;
+  margin: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem));
+  grid-gap: 2rem;
+  justify-content: center;
+}
+.recipe-list h2{
+  display: block;
+  font-size: 1.5em;
+  margin-block-start: 0.83em;
+  margin-block-end: 0.83em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+  color: black;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+.recipe-list p{
+  backface-visibility: hidden;
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+
+  color: black;
+
+}
+
+
+
+
+.card {
+  overflow: hidden;
+  box-shadow: 0px 2px 20px var(--clr-gray200);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: transform 200ms ease-in;
+}
+
+.card :hover {
+  transform: scale(1.02);
+}
+.card__image {
+    height: 12rem;
+    width: 100%;
+    object-fit: cover;
+  }
+
+.card__title {
+  backface-visibility: hidden;
+    padding: 1rem;
+  }
+
+.card__description {
+  backface-visibility: hidden;
+    padding: 0 1rem;
+  }
+
+.card__btn {
+    padding: 1rem;
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 1rem;
+    margin: 1rem;
+    border: 2px solid var(--clr-primary);
+    background: transparent;
+    color: var(--clr-primary);
+    border-radius: var(--radius);
+    transition: background 200ms ease-in, color 200ms ease-in;
+  }
+
+
+.card__btn :hover {
+    background: var(--clr-primary);
+    color: white;
+  }
 

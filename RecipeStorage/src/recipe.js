@@ -31,20 +31,28 @@ import
   const logoutButton = document.querySelector('#todo-app .logout-button')
 
   const status = document.querySelector('.status');
-  const taskInputEl = document.querySelector('#todo-app .add-task');
-  const addTaskButton = document.querySelector('#todo-app .addTask-button');
+  // const taskInputEl = document.querySelector('#todo-app .add-task');
+  const addRecipeButton = document.querySelector('#todo-app .addRecipe-btn');
 
   const recipeListEl = document.querySelector('main .recipe-list');
+  const recipeDetailEl = document.querySelector('main .recipe-detail');
 
   const listEl = document.querySelector('#todo-app .todos');
+
+  const titleInputEl = document.getElementById('title');
+  const imageInputEl = document.getElementById('image');
+  const descriptionInputEl = document.getElementById('description');
+  const ingridientsInputEl = document.getElementById('ingredients');
+  const instructionsInputEl = document.getElementById('instructions');
+
 
 
   disableButtonIfNoInput();
   addLogin();
   addLogout();
 
-  addAbilityToCompleteItems();
-  addAbilityToAddItems();
+  addAbilityToViewRecipes();
+  addAbilityToAddRecipes();
   addAbilityToDeleteItems();
 
 
@@ -118,6 +126,18 @@ import
     document.querySelector('#todo-app .login').classList.remove('hidden');
     document.querySelector('#todo-app .logged-in').classList.add('hidden');
   }
+  function showReccipes()
+  {
+    document.querySelector('.recipe-list').classList.remove('hidden');
+    document.querySelector('.recipe-detail').classList.add('hidden');
+
+  }
+  function showRecipeDetail()
+  {
+    document.querySelector('.recipe-list').classList.add('hidden');
+    document.querySelector('.recipe-detail').classList.remove('hidden');
+
+  }
 
   function addLogin()
   {
@@ -179,7 +199,7 @@ import
       </li>`;
     }).join("\n");
     listEl.innerHTML = html;
-    addTaskButton.disabled = !taskInputEl.value;
+    // addRecipeButton.disabled = !taskInputEl.value;
   }
 
   function renderRecipes(recipes)
@@ -188,17 +208,47 @@ import
     for (const recipe_id in recipes) {
       const recipe = recipes[recipe_id];
       html += `
-        <div class="card">
+        <li class="card">
           <div class="card__body">
             <img src="${recipe.image}" alt="image for ${recipe.title}" class="card__image">
             <h2 class="card__title">${recipe.title}</h2>
-            <p class="card__description">${recipe.description}</p>
+            <p class="card__description">${recipe.author}</p>
           </div>
-          <button class="card__btn">View Recipe</button>
-        </div>`;
+          <button class="card__btn" id="${recipe_id}">View Recipe</button>
+        </li>`;
+
+        // html += `
+        // <li class="card">
+        //   <div class="card__body">
+        //     <span class="card__image" data-index="${recipe_id}"><img src="${recipe.image}" alt="image for ${recipe.title}"></span>
+        //     <span class="words" data-index="${recipe_id}">
+
+        //     <h2 class="card__title" data-index="${recipe_id}>${recipe.title}</h2>
+        //     <p class="card__author">${recipe.author}</p>
+        //     <p class="card__description" data-index="${recipe_id}>${recipe.description}</p>
+        //     </span>
+        //   </div>
+
+        // </li>`;
     }
     recipeListEl.innerHTML = html;
-    addTaskButton.disabled = !taskInputEl.value;
+    // addRecipeButton.disabled = !taskInputEl.value;
+  }
+
+  function renderRecipeDetail(recipe)
+  {
+    let html = `
+        <img src="${recipe.image}" alt="image for ${recipe.title}" class="">
+        <h2>${recipe.title}</h2>
+        <p>${recipe.author}</p>
+        <p>${recipe.discription}</p>
+        <p>${recipe.ingredients}</p>
+        <p>${recipe.instructions}</p>`;
+
+
+
+    recipeDetailEl.innerHTML = html;
+    // addRecipeButton.disabled = !taskInputEl.value;
   }
 
   function disableButtonIfNoInput()
@@ -208,31 +258,34 @@ import
     {
       loginButton.disabled = !usernameInputEl.value;
     })
-    taskInputEl.addEventListener('input', () =>
-    {
-      addTaskButton.disabled = !taskInputEl.value;
-    });
+    // taskInputEl.addEventListener('input', () =>
+    // {
+    //   addRecipeButton.disabled = !taskInputEl.value;
+    // });
   }
 
-  function addAbilityToCompleteItems()
+  function addAbilityToViewRecipes()
   {
-    listEl.addEventListener('click', (e) =>
+
+    recipeListEl.addEventListener('click', (e) =>
     {
-      if (!e.target.classList.contains('todo'))
+      if (!e.target.classList.contains('card__btn'))
       {
         return;
       }
-      const index = e.target.dataset.index;
+      console.log(e.target.id);
+      const recipe_id = e.target.id;
 
-      fetch(`/todos/${index}`, {
-        method: 'PATCH',
+      fetch(`/recipes/${recipe_id}`, {
+        method: 'get',
       })
         .catch(() => Promise.reject({ error: 'network-error' }))
         .then(convertError)
-        .then(todos =>
+        .then(recipe =>
         {
-          taskInputEl.value = '';
-          renderTodos(todos);
+          // taskInputEl.value = '';
+          showRecipeDetail();
+          renderRecipeDetail(recipe);
           updateStatus('');
         })
         .catch(err =>
@@ -242,21 +295,43 @@ import
     });
   }
 
-  function addAbilityToAddItems()
+  function addAbilityToAddRecipes()
   {
-    addTaskButton.addEventListener('click', (e) =>
-    {
 
-      const task = taskInputEl.value;
-      fetch(`/todos/${task}`, {
+    addRecipeButton.addEventListener('click', (e) =>
+    {
+      const title = titleInputEl.value;
+      const image = imageInputEl.value;
+      const description = descriptionInputEl.value;
+      const ingridients = ingridientsInputEl.value;
+      const instructions = instructionsInputEl.value;
+
+
+      fetch(`/recipes`, {
         method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+        redirect: 'follow',
+        body: JSON.stringify({
+          title: title,
+          image: image,
+          description: description,
+          ingridients: ingridients,
+          instructions: instructions
+        })
       })
         .catch(() => Promise.reject({ error: 'network-error' }))
         .then(convertError)
-        .then(todos =>
+        .then(recipes =>
         {
-          taskInputEl.value = '';
-          renderTodos(todos);
+          titleInputEl.value = '';
+          imageInputEl.value = '';
+          descriptionInputEl.value = '';
+          ingridientsInputEl.value = '';
+          instructionsInputEl.value = '';
+          renderRecipes(recipes);
 
           updateStatus('');
         })
@@ -285,7 +360,7 @@ import
         .then(convertError)
         .then(todos =>
         {
-          taskInputEl.value = '';
+          // taskInputEl.value = '';
           renderTodos(todos);
           updateStatus('');
         })

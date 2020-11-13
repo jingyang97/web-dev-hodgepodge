@@ -20,14 +20,39 @@
         <button class="logout-button" type="button">Log out</button></br>
         <div class="content">
           Add Task:
-          <input class="add-task">
-          <button class="addTask-button" type="button">Add</button>
-          <div class="status"></div>
+          <!-- <input class="add-task"> -->
+          <!-- <button class="addTask-button" type="button">Add</button> -->
           <ul class="todos"></ul>
+          <form action="/recipes" method="post" class="new-recipe">
+
+                <p>
+                    <label for="title">Title: </label>
+                    <input type="text" name="title" id="title" required>
+                    <label for="image">Image: </label>
+                    <input type="url" name="image" id="image" placeholder="Paste''' image address here.">
+                </p>
+                <p>
+                    <label for="description">Description: </label>
+                    <textarea id="description" name="description"
+                    rows="5" cols="33" placeholder="Type your description here."></textarea>
+                </p>
+                <p>
+                    <label for="ingredients">Ingredients: </label>
+                    <textarea id="ingredients" name="ingredients"
+                    rows="5" cols="33" placeholder="This will be displayed as unordered list. Swith two lines to input the next bullet point." required></textarea>
+                </p>
+                <p>
+                    <label for="instructions">Instructions: </label>
+                    <textarea id="instructions" name="instructions"
+                    rows="5" cols="33" placeholder="This will be displayed as ordered list. Swith two lines to type the next step." required></textarea>
+                </p>
+                <button class="addRecipe-btn">Create</button>
+          </form>
+          <div class="status"></div>
         </div>
       </div>
       <main class="recipes">
-        <div class="recipe-list"></div>
+        <ul class="recipe-list"></ul>
         <div class="recipe-detail"></div>
       </main>
     </div>

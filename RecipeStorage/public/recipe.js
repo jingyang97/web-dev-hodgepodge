@@ -74,12 +74,10 @@ __webpack_require__.r(__webpack_exports__);
   var usernameInputEl = document.querySelector('#todo-app .username-input');
   var loginButton = document.querySelector('#todo-app .login button');
   var logoutButton = document.querySelector('#todo-app .logout-button');
-  var status = document.querySelector('.status'); // const taskInputEl = document.querySelector('#todo-app .add-task');
-
+  var status = document.querySelector('.status');
   var addRecipeButton = document.querySelector('#todo-app .addRecipe-btn');
   var recipeListEl = document.querySelector('main .recipe-list');
   var recipeDetailEl = document.querySelector('main .recipe-detail');
-  var listEl = document.querySelector('#todo-app .todos');
   var titleInputEl = document.getElementById('title');
   var imageInputEl = document.getElementById('image');
   var descriptionInputEl = document.getElementById('description');
@@ -159,6 +157,7 @@ __webpack_require__.r(__webpack_exports__);
   function addLogout() {
     logoutButton.addEventListener('click', function () {
       (0,_services__WEBPACK_IMPORTED_MODULE_1__.performLogout)().then(function (userInfo) {
+        console.log('logout successfully');
         (0,_html__WEBPACK_IMPORTED_MODULE_0__.showLogin)();
       })["catch"](function (err) {
         updateStatus(errMsgs[err.error] || err.error);
@@ -166,13 +165,6 @@ __webpack_require__.r(__webpack_exports__);
         (0,_html__WEBPACK_IMPORTED_MODULE_0__.showReccipes)();
       });
     });
-  }
-
-  function renderTodos(todos) {
-    var html = todos.map(function (todo, index) {
-      return "\n      <li>\n        <span class=\"todo ".concat(todo.done ? "complete" : "", "\" data-index=\"").concat(index, "\">").concat(todo.task, "</span>\n        <span class=\"delete\" data-index=\"").concat(index, "\">X</span>\n      </li>");
-    }).join("\n");
-    listEl.innerHTML = html; // addRecipeButton.disabled = !taskInputEl.value;
   }
 
   function renderRecipes(recipes) {
@@ -188,7 +180,7 @@ __webpack_require__.r(__webpack_exports__);
 
   function renderRecipeDetail(recipe) {
     var html = "\n        <img src=\"".concat(recipe.image, "\" alt=\"image for ").concat(recipe.title, "\" class=\"\">\n        <h2>").concat(recipe.title, "</h2>\n        <p>").concat(recipe.author, "</p>\n        <p>").concat(recipe.description, "</p>\n        <p>").concat(recipe.ingredients, "</p>\n        <p>").concat(recipe.instructions, "</p>");
-    recipeDetailEl.innerHTML = html; // addRecipeButton.disabled = !taskInputEl.value;
+    recipeDetailEl.innerHTML = html;
   }
 
   function disableButtonIfNoInput() {
@@ -215,7 +207,6 @@ __webpack_require__.r(__webpack_exports__);
           error: 'network-error'
         });
       }).then(convertError).then(function (recipe) {
-        // taskInputEl.value = '';
         (0,_html__WEBPACK_IMPORTED_MODULE_0__.showRecipeDetail)();
         renderRecipeDetail(recipe);
         updateStatus('');
@@ -271,7 +262,6 @@ __webpack_require__.r(__webpack_exports__);
       error: 'network-error'
     });
   }).then(convertError).then(function (recipes) {
-    (0,_html__WEBPACK_IMPORTED_MODULE_0__.showContent)();
     (0,_html__WEBPACK_IMPORTED_MODULE_0__.showReccipes)();
     renderRecipes(recipes);
     updateStatus('');

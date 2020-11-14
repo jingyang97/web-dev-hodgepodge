@@ -1,10 +1,9 @@
 "use strict";
 
-
+import { showContent, showLogin, showReccipes, showRecipeDetail } from './html';
 import
   {
     checkLoginStatus,
-
     getRecipes, performLogin,
     performLogout
   } from './services';
@@ -115,30 +114,6 @@ import
       .then(err => Promise.reject(err));
   }
 
-  // TODO: Move these HTML-changing functions to an import from another file
-  function showContent()
-  {
-    document.querySelector('#todo-app .login').classList.add('hidden');
-    document.querySelector('#todo-app .logged-in').classList.remove('hidden');
-  }
-
-  function showLogin()
-  {
-    document.querySelector('#todo-app .login').classList.remove('hidden');
-    document.querySelector('#todo-app .logged-in').classList.add('hidden');
-  }
-  function showReccipes()
-  {
-    document.querySelector('#todo-app .recipe-list').classList.remove('hidden');
-    document.querySelector('#todo-app .recipe-detail').classList.add('hidden');
-
-  }
-  function showRecipeDetail()
-  {
-    document.querySelector('#todo-app .recipe-list').classList.add('hidden');
-    document.querySelector('#todo-app .recipe-detail').classList.remove('hidden');
-
-  }
 
   function addLogin()
   {

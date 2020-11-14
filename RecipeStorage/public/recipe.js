@@ -2,6 +2,47 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/html.js":
+/*!*********************!*\
+  !*** ./src/html.js ***!
+  \*********************/
+/*! namespace exports */
+/*! export showContent [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export showLogin [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export showReccipes [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export showRecipeDetail [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "showContent": () => /* binding */ showContent,
+/* harmony export */   "showLogin": () => /* binding */ showLogin,
+/* harmony export */   "showReccipes": () => /* binding */ showReccipes,
+/* harmony export */   "showRecipeDetail": () => /* binding */ showRecipeDetail
+/* harmony export */ });
+
+
+var showContent = function showContent() {
+  document.querySelector('#todo-app .login').classList.add('hidden');
+  document.querySelector('#todo-app .logged-in').classList.remove('hidden');
+};
+var showLogin = function showLogin() {
+  document.querySelector('#todo-app .login').classList.remove('hidden');
+  document.querySelector('#todo-app .logged-in').classList.add('hidden');
+};
+var showReccipes = function showReccipes() {
+  document.querySelector('#todo-app .recipe-list').classList.remove('hidden');
+  document.querySelector('#todo-app .recipe-detail').classList.add('hidden');
+};
+var showRecipeDetail = function showRecipeDetail() {
+  document.querySelector('#todo-app .recipe-list').classList.add('hidden');
+  document.querySelector('#todo-app .recipe-detail').classList.remove('hidden');
+};
+
+/***/ }),
+
 /***/ "./src/recipe.js":
 /*!***********************!*\
   !*** ./src/recipe.js ***!
@@ -12,7 +53,9 @@
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./services */ "./src/services.js");
+/* harmony import */ var _html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./html */ "./src/html.js");
+/* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./services */ "./src/services.js");
+
 
 
 
@@ -48,21 +91,21 @@ __webpack_require__.r(__webpack_exports__);
   addAbilityToViewRecipes();
   addAbilityToAddRecipes(); // Check for login
 
-  (0,_services__WEBPACK_IMPORTED_MODULE_0__.checkLoginStatus)().then(function (userInfo) {
+  (0,_services__WEBPACK_IMPORTED_MODULE_1__.checkLoginStatus)().then(function (userInfo) {
     appState.isLoggedIn = true;
     poll(true);
-    showContent();
-    showReccipes();
+    (0,_html__WEBPACK_IMPORTED_MODULE_0__.showContent)();
+    (0,_html__WEBPACK_IMPORTED_MODULE_0__.showReccipes)();
   })["catch"](function (error) {
     appState.isLoggedIn = false;
-    showLogin();
-    showReccipes();
+    (0,_html__WEBPACK_IMPORTED_MODULE_0__.showLogin)();
+    (0,_html__WEBPACK_IMPORTED_MODULE_0__.showReccipes)();
   });
 
   function poll(shouldPoll) {
     if (shouldPoll && !appState.pollId) {
       appState.pollId = setInterval(function () {
-        (0,_services__WEBPACK_IMPORTED_MODULE_0__.getRecipes)()["catch"](function (err) {
+        (0,_services__WEBPACK_IMPORTED_MODULE_1__.getRecipes)()["catch"](function (err) {
           updateStatus(errMsgs[err.error] || err.error);
         }).then(function (recipes) {
           appState.error = '';
@@ -91,57 +134,36 @@ __webpack_require__.r(__webpack_exports__);
     return response.json().then(function (err) {
       return Promise.reject(err);
     });
-  } // TODO: Move these HTML-changing functions to an import from another file
-
-
-  function showContent() {
-    document.querySelector('#todo-app .login').classList.add('hidden');
-    document.querySelector('#todo-app .logged-in').classList.remove('hidden');
-  }
-
-  function showLogin() {
-    document.querySelector('#todo-app .login').classList.remove('hidden');
-    document.querySelector('#todo-app .logged-in').classList.add('hidden');
-  }
-
-  function showReccipes() {
-    document.querySelector('#todo-app .recipe-list').classList.remove('hidden');
-    document.querySelector('#todo-app .recipe-detail').classList.add('hidden');
-  }
-
-  function showRecipeDetail() {
-    document.querySelector('#todo-app .recipe-list').classList.add('hidden');
-    document.querySelector('#todo-app .recipe-detail').classList.remove('hidden');
   }
 
   function addLogin() {
     document.querySelector('#todo-app .login button').addEventListener('click', function () {
       var username = usernameInputEl.value;
-      (0,_services__WEBPACK_IMPORTED_MODULE_0__.performLogin)(username).then(function (userInfo) {
+      (0,_services__WEBPACK_IMPORTED_MODULE_1__.performLogin)(username).then(function (userInfo) {
         appState.isLoggedIn = true;
         appState.todos = userInfo;
         appState.error = '';
         poll(true);
-        showContent();
-        showReccipes(); // renderTodos(userInfo.todos);
+        (0,_html__WEBPACK_IMPORTED_MODULE_0__.showContent)();
+        (0,_html__WEBPACK_IMPORTED_MODULE_0__.showReccipes)(); // renderTodos(userInfo.todos);
 
         renderRecipes(userInfo);
       })["catch"](function (err) {
         updateStatus(errMsgs[err.error] || err.error);
-        showLogin();
-        showReccipes();
+        (0,_html__WEBPACK_IMPORTED_MODULE_0__.showLogin)();
+        (0,_html__WEBPACK_IMPORTED_MODULE_0__.showReccipes)();
       });
     });
   }
 
   function addLogout() {
     logoutButton.addEventListener('click', function () {
-      (0,_services__WEBPACK_IMPORTED_MODULE_0__.performLogout)().then(function (userInfo) {
-        showLogin();
+      (0,_services__WEBPACK_IMPORTED_MODULE_1__.performLogout)().then(function (userInfo) {
+        (0,_html__WEBPACK_IMPORTED_MODULE_0__.showLogin)();
       })["catch"](function (err) {
         updateStatus(errMsgs[err.error] || err.error);
-        showContent();
-        showReccipes();
+        (0,_html__WEBPACK_IMPORTED_MODULE_0__.showContent)();
+        (0,_html__WEBPACK_IMPORTED_MODULE_0__.showReccipes)();
       });
     });
   }
@@ -194,7 +216,7 @@ __webpack_require__.r(__webpack_exports__);
         });
       }).then(convertError).then(function (recipe) {
         // taskInputEl.value = '';
-        showRecipeDetail();
+        (0,_html__WEBPACK_IMPORTED_MODULE_0__.showRecipeDetail)();
         renderRecipeDetail(recipe);
         updateStatus('');
       })["catch"](function (err) {
@@ -249,8 +271,8 @@ __webpack_require__.r(__webpack_exports__);
       error: 'network-error'
     });
   }).then(convertError).then(function (recipes) {
-    showContent();
-    showReccipes();
+    (0,_html__WEBPACK_IMPORTED_MODULE_0__.showContent)();
+    (0,_html__WEBPACK_IMPORTED_MODULE_0__.showReccipes)();
     renderRecipes(recipes);
     updateStatus('');
   })["catch"](function (err) {

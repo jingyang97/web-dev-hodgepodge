@@ -1,3 +1,4 @@
+const uuid = require('uuid').v4;
 const sessions = {
     001: {
       username: 'Jingbaba',

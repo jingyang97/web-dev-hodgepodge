@@ -31,16 +31,22 @@ __webpack_require__.r(__webpack_exports__);
   var usernameInputEl = document.querySelector('#todo-app .username-input');
   var loginButton = document.querySelector('#todo-app .login button');
   var logoutButton = document.querySelector('#todo-app .logout-button');
-  var status = document.querySelector('.status');
-  var taskInputEl = document.querySelector('#todo-app .add-task');
-  var addTaskButton = document.querySelector('#todo-app .addTask-button');
+  var status = document.querySelector('.status'); // const taskInputEl = document.querySelector('#todo-app .add-task');
+
+  var addRecipeButton = document.querySelector('#todo-app .addRecipe-btn');
   var recipeListEl = document.querySelector('main .recipe-list');
+  var recipeDetailEl = document.querySelector('main .recipe-detail');
   var listEl = document.querySelector('#todo-app .todos');
+  var titleInputEl = document.getElementById('title');
+  var imageInputEl = document.getElementById('image');
+  var descriptionInputEl = document.getElementById('description');
+  var ingridientsInputEl = document.getElementById('ingredients');
+  var instructionsInputEl = document.getElementById('instructions');
   disableButtonIfNoInput();
   addLogin();
   addLogout();
-  addAbilityToCompleteItems();
-  addAbilityToAddItems();
+  addAbilityToViewRecipes();
+  addAbilityToAddRecipes();
   addAbilityToDeleteItems(); // Check for login
 
   (0,_services__WEBPACK_IMPORTED_MODULE_0__.checkLoginStatus)().then(function (userInfo) {
@@ -97,6 +103,16 @@ __webpack_require__.r(__webpack_exports__);
     document.querySelector('#todo-app .logged-in').classList.add('hidden');
   }
 
+  function showReccipes() {
+    document.querySelector('.recipe-list').classList.remove('hidden');
+    document.querySelector('.recipe-detail').classList.add('hidden');
+  }
+
+  function showRecipeDetail() {
+    document.querySelector('.recipe-list').classList.add('hidden');
+    document.querySelector('.recipe-detail').classList.remove('hidden');
+  }
+
   function addLogin() {
     document.querySelector('#todo-app .login button').addEventListener('click', function () {
       var username = usernameInputEl.value;
@@ -130,8 +146,7 @@ __webpack_require__.r(__webpack_exports__);
     var html = todos.map(function (todo, index) {
       return "\n      <li>\n        <span class=\"todo ".concat(todo.done ? "complete" : "", "\" data-index=\"").concat(index, "\">").concat(todo.task, "</span>\n        <span class=\"delete\" data-index=\"").concat(index, "\">X</span>\n      </li>");
     }).join("\n");
-    listEl.innerHTML = html;
-    addTaskButton.disabled = !taskInputEl.value;
+    listEl.innerHTML = html; // addRecipeButton.disabled = !taskInputEl.value;
   }
 
   function renderRecipes(recipes) {
@@ -139,38 +154,54 @@ __webpack_require__.r(__webpack_exports__);
 
     for (var recipe_id in recipes) {
       var recipe = recipes[recipe_id];
-      html += "\n        <div class=\"card\">\n          <div class=\"card__body\">\n            <img src=\"".concat(recipe.image, "\" alt=\"image for ").concat(recipe.title, "\" class=\"card__image\">\n            <h2 class=\"card__title\">").concat(recipe.title, "</h2>\n            <p class=\"card__description\">").concat(recipe.description, "</p>\n          </div>\n          <button class=\"card__btn\">View Recipe</button>\n        </div>");
+      html += "\n        <li class=\"card\">\n          <div class=\"card__body\">\n            <img src=\"".concat(recipe.image, "\" alt=\"image for ").concat(recipe.title, "\" class=\"card__image\">\n            <h2 class=\"card__title\">").concat(recipe.title, "</h2>\n            <p class=\"card__description\">").concat(recipe.author, "</p>\n          </div>\n          <button class=\"card__btn\" id=\"").concat(recipe_id, "\">View Recipe</button>\n        </li>"); // html += `
+      // <li class="card">
+      //   <div class="card__body">
+      //     <span class="card__image" data-index="${recipe_id}"><img src="${recipe.image}" alt="image for ${recipe.title}"></span>
+      //     <span class="words" data-index="${recipe_id}">
+      //     <h2 class="card__title" data-index="${recipe_id}>${recipe.title}</h2>
+      //     <p class="card__author">${recipe.author}</p>
+      //     <p class="card__description" data-index="${recipe_id}>${recipe.description}</p>
+      //     </span>
+      //   </div>
+      // </li>`;
     }
 
-    recipeListEl.innerHTML = html;
-    addTaskButton.disabled = !taskInputEl.value;
+    recipeListEl.innerHTML = html; // addRecipeButton.disabled = !taskInputEl.value;
+  }
+
+  function renderRecipeDetail(recipe) {
+    var html = "\n        <img src=\"".concat(recipe.image, "\" alt=\"image for ").concat(recipe.title, "\" class=\"\">\n        <h2>").concat(recipe.title, "</h2>\n        <p>").concat(recipe.author, "</p>\n        <p>").concat(recipe.discription, "</p>\n        <p>").concat(recipe.ingredients, "</p>\n        <p>").concat(recipe.instructions, "</p>");
+    recipeDetailEl.innerHTML = html; // addRecipeButton.disabled = !taskInputEl.value;
   }
 
   function disableButtonIfNoInput() {
     usernameInputEl.addEventListener('input', function () {
       loginButton.disabled = !usernameInputEl.value;
-    });
-    taskInputEl.addEventListener('input', function () {
-      addTaskButton.disabled = !taskInputEl.value;
-    });
+    }); // taskInputEl.addEventListener('input', () =>
+    // {
+    //   addRecipeButton.disabled = !taskInputEl.value;
+    // });
   }
 
-  function addAbilityToCompleteItems() {
-    listEl.addEventListener('click', function (e) {
-      if (!e.target.classList.contains('todo')) {
+  function addAbilityToViewRecipes() {
+    recipeListEl.addEventListener('click', function (e) {
+      if (!e.target.classList.contains('card__btn')) {
         return;
       }
 
-      var index = e.target.dataset.index;
-      fetch("/todos/".concat(index), {
-        method: 'PATCH'
+      console.log(e.target.id);
+      var recipe_id = e.target.id;
+      fetch("/recipes/".concat(recipe_id), {
+        method: 'get'
       })["catch"](function () {
         return Promise.reject({
           error: 'network-error'
         });
-      }).then(convertError).then(function (todos) {
-        taskInputEl.value = '';
-        renderTodos(todos);
+      }).then(convertError).then(function (recipe) {
+        // taskInputEl.value = '';
+        showRecipeDetail();
+        renderRecipeDetail(recipe);
         updateStatus('');
       })["catch"](function (err) {
         updateStatus(errMsgs[err.error] || err.error);
@@ -178,18 +209,38 @@ __webpack_require__.r(__webpack_exports__);
     });
   }
 
-  function addAbilityToAddItems() {
-    addTaskButton.addEventListener('click', function (e) {
-      var task = taskInputEl.value;
-      fetch("/todos/".concat(task), {
-        method: 'POST'
+  function addAbilityToAddRecipes() {
+    addRecipeButton.addEventListener('click', function (e) {
+      var title = titleInputEl.value;
+      var image = imageInputEl.value;
+      var description = descriptionInputEl.value;
+      var ingridients = ingridientsInputEl.value;
+      var instructions = instructionsInputEl.value;
+      fetch("/recipes", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+        redirect: 'follow',
+        body: JSON.stringify({
+          title: title,
+          image: image,
+          description: description,
+          ingridients: ingridients,
+          instructions: instructions
+        })
       })["catch"](function () {
         return Promise.reject({
           error: 'network-error'
         });
-      }).then(convertError).then(function (todos) {
-        taskInputEl.value = '';
-        renderTodos(todos);
+      }).then(convertError).then(function (recipes) {
+        titleInputEl.value = '';
+        imageInputEl.value = '';
+        descriptionInputEl.value = '';
+        ingridientsInputEl.value = '';
+        instructionsInputEl.value = '';
+        renderRecipes(recipes);
         updateStatus('');
       })["catch"](function (err) {
         updateStatus(errMsgs[err.error] || err.error);
@@ -211,7 +262,7 @@ __webpack_require__.r(__webpack_exports__);
           error: 'network-error'
         });
       }).then(convertError).then(function (todos) {
-        taskInputEl.value = '';
+        // taskInputEl.value = '';
         renderTodos(todos);
         updateStatus('');
       })["catch"](function (err) {

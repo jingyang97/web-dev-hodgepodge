@@ -342,34 +342,7 @@ import
     });
   }
 
-  function addAbilityToDeleteItems()
-  {
-    listEl.addEventListener('click', (e) =>
-    {
-      if (!e.target.classList.contains('delete'))
-      {
-        return;
-      }
 
-      const index = e.target.dataset.index;
-
-      fetch(`/todos/${index}`, {
-        method: 'DELETE',
-      })
-        .catch(() => Promise.reject({ error: 'network-error' }))
-        .then(convertError)
-        .then(todos =>
-        {
-          // taskInputEl.value = '';
-          renderTodos(todos);
-          updateStatus('');
-        })
-        .catch(err =>
-        {
-          updateStatus(errMsgs[err.error] || err.error);
-        })
-    });
-  }
 
   fetch('/recipes/', {
     method: 'GET',

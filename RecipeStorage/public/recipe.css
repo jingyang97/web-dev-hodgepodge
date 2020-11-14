@@ -166,6 +166,9 @@ ul li{
   justify-content: center;
   overflow-y: scroll;
 }
+.recipe-list.hidden {
+  display: none;
+}
 .recipe-list h2{
   display: block;
   font-size: 1.5em;
@@ -243,4 +246,10 @@ ul li{
   }
 
 
-
+.recipe-detail {
+  font-family: inherit;
+  color: black;
+}
+.recipe-detail.hidden {
+  display: none;
+}

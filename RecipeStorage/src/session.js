@@ -119,7 +119,7 @@ const username_sid = {};
 
 const isValidSession = function (sid)
 {
-return recipes_ls;
+return sessions[sid];
 };
 const validateUsername = function (username)
 {

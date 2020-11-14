@@ -42,7 +42,7 @@ import
   const titleInputEl = document.getElementById('title');
   const imageInputEl = document.getElementById('image');
   const descriptionInputEl = document.getElementById('description');
-  const ingridientsInputEl = document.getElementById('ingredients');
+  const ingredientsInputEl = document.getElementById('ingredients');
   const instructionsInputEl = document.getElementById('instructions');
 
 
@@ -50,10 +50,9 @@ import
   disableButtonIfNoInput();
   addLogin();
   addLogout();
-
   addAbilityToViewRecipes();
   addAbilityToAddRecipes();
-  addAbilityToDeleteItems();
+
 
 
   // Check for login
@@ -63,11 +62,13 @@ import
       appState.isLoggedIn = true;
       poll(true);
       showContent();
+      showReccipes();
     })
     .catch(error =>
     {
       appState.isLoggedIn = false;
       showLogin();
+      showReccipes();
     });
 
 
@@ -128,14 +129,14 @@ import
   }
   function showReccipes()
   {
-    document.querySelector('.recipe-list').classList.remove('hidden');
-    document.querySelector('.recipe-detail').classList.add('hidden');
+    document.querySelector('#todo-app .recipe-list').classList.remove('hidden');
+    document.querySelector('#todo-app .recipe-detail').classList.add('hidden');
 
   }
   function showRecipeDetail()
   {
-    document.querySelector('.recipe-list').classList.add('hidden');
-    document.querySelector('.recipe-detail').classList.remove('hidden');
+    document.querySelector('#todo-app .recipe-list').classList.add('hidden');
+    document.querySelector('#todo-app .recipe-detail').classList.remove('hidden');
 
   }
 
@@ -155,6 +156,7 @@ import
           appState.error = '';
           poll(true);
           showContent();
+          showReccipes();
           // renderTodos(userInfo.todos);
           renderRecipes(userInfo);
         })
@@ -162,6 +164,7 @@ import
         {
           updateStatus(errMsgs[err.error] || err.error);
           showLogin();
+          showReccipes();
         });
 
     });
@@ -180,6 +183,7 @@ import
         {
           updateStatus(errMsgs[err.error] || err.error);
           showContent();
+          showReccipes();
         });
 
     });
@@ -216,20 +220,6 @@ import
           </div>
           <button class="card__btn" id="${recipe_id}">View Recipe</button>
         </li>`;
-
-        // html += `
-        // <li class="card">
-        //   <div class="card__body">
-        //     <span class="card__image" data-index="${recipe_id}"><img src="${recipe.image}" alt="image for ${recipe.title}"></span>
-        //     <span class="words" data-index="${recipe_id}">
-
-        //     <h2 class="card__title" data-index="${recipe_id}>${recipe.title}</h2>
-        //     <p class="card__author">${recipe.author}</p>
-        //     <p class="card__description" data-index="${recipe_id}>${recipe.description}</p>
-        //     </span>
-        //   </div>
-
-        // </li>`;
     }
     recipeListEl.innerHTML = html;
     // addRecipeButton.disabled = !taskInputEl.value;
@@ -241,7 +231,7 @@ import
         <img src="${recipe.image}" alt="image for ${recipe.title}" class="">
         <h2>${recipe.title}</h2>
         <p>${recipe.author}</p>
-        <p>${recipe.discription}</p>
+        <p>${recipe.description}</p>
         <p>${recipe.ingredients}</p>
         <p>${recipe.instructions}</p>`;
 
@@ -303,7 +293,7 @@ import
       const title = titleInputEl.value;
       const image = imageInputEl.value;
       const description = descriptionInputEl.value;
-      const ingridients = ingridientsInputEl.value;
+      const ingredients = ingredientsInputEl.value;
       const instructions = instructionsInputEl.value;
 
 
@@ -318,7 +308,7 @@ import
           title: title,
           image: image,
           description: description,
-          ingridients: ingridients,
+          ingredients: ingredients,
           instructions: instructions
         })
       })
@@ -329,7 +319,7 @@ import
           titleInputEl.value = '';
           imageInputEl.value = '';
           descriptionInputEl.value = '';
-          ingridientsInputEl.value = '';
+          ingredientsInputEl.value = '';
           instructionsInputEl.value = '';
           renderRecipes(recipes);
 
@@ -351,7 +341,8 @@ import
     .then(convertError)
     .then(recipes =>
     {
-
+      showContent();
+      showReccipes();
       renderRecipes(recipes);
       updateStatus('');
     })

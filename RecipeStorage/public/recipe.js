@@ -40,22 +40,23 @@ __webpack_require__.r(__webpack_exports__);
   var titleInputEl = document.getElementById('title');
   var imageInputEl = document.getElementById('image');
   var descriptionInputEl = document.getElementById('description');
-  var ingridientsInputEl = document.getElementById('ingredients');
+  var ingredientsInputEl = document.getElementById('ingredients');
   var instructionsInputEl = document.getElementById('instructions');
   disableButtonIfNoInput();
   addLogin();
   addLogout();
   addAbilityToViewRecipes();
-  addAbilityToAddRecipes();
-  addAbilityToDeleteItems(); // Check for login
+  addAbilityToAddRecipes(); // Check for login
 
   (0,_services__WEBPACK_IMPORTED_MODULE_0__.checkLoginStatus)().then(function (userInfo) {
     appState.isLoggedIn = true;
     poll(true);
     showContent();
+    showReccipes();
   })["catch"](function (error) {
     appState.isLoggedIn = false;
     showLogin();
+    showReccipes();
   });
 
   function poll(shouldPoll) {
@@ -104,13 +105,13 @@ __webpack_require__.r(__webpack_exports__);
   }
 
   function showReccipes() {
-    document.querySelector('.recipe-list').classList.remove('hidden');
-    document.querySelector('.recipe-detail').classList.add('hidden');
+    document.querySelector('#todo-app .recipe-list').classList.remove('hidden');
+    document.querySelector('#todo-app .recipe-detail').classList.add('hidden');
   }
 
   function showRecipeDetail() {
-    document.querySelector('.recipe-list').classList.add('hidden');
-    document.querySelector('.recipe-detail').classList.remove('hidden');
+    document.querySelector('#todo-app .recipe-list').classList.add('hidden');
+    document.querySelector('#todo-app .recipe-detail').classList.remove('hidden');
   }
 
   function addLogin() {
@@ -121,12 +122,14 @@ __webpack_require__.r(__webpack_exports__);
         appState.todos = userInfo;
         appState.error = '';
         poll(true);
-        showContent(); // renderTodos(userInfo.todos);
+        showContent();
+        showReccipes(); // renderTodos(userInfo.todos);
 
         renderRecipes(userInfo);
       })["catch"](function (err) {
         updateStatus(errMsgs[err.error] || err.error);
         showLogin();
+        showReccipes();
       });
     });
   }
@@ -138,6 +141,7 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (err) {
         updateStatus(errMsgs[err.error] || err.error);
         showContent();
+        showReccipes();
       });
     });
   }
@@ -154,24 +158,14 @@ __webpack_require__.r(__webpack_exports__);
 
     for (var recipe_id in recipes) {
       var recipe = recipes[recipe_id];
-      html += "\n        <li class=\"card\">\n          <div class=\"card__body\">\n            <img src=\"".concat(recipe.image, "\" alt=\"image for ").concat(recipe.title, "\" class=\"card__image\">\n            <h2 class=\"card__title\">").concat(recipe.title, "</h2>\n            <p class=\"card__description\">").concat(recipe.author, "</p>\n          </div>\n          <button class=\"card__btn\" id=\"").concat(recipe_id, "\">View Recipe</button>\n        </li>"); // html += `
-      // <li class="card">
-      //   <div class="card__body">
-      //     <span class="card__image" data-index="${recipe_id}"><img src="${recipe.image}" alt="image for ${recipe.title}"></span>
-      //     <span class="words" data-index="${recipe_id}">
-      //     <h2 class="card__title" data-index="${recipe_id}>${recipe.title}</h2>
-      //     <p class="card__author">${recipe.author}</p>
-      //     <p class="card__description" data-index="${recipe_id}>${recipe.description}</p>
-      //     </span>
-      //   </div>
-      // </li>`;
+      html += "\n        <li class=\"card\">\n          <div class=\"card__body\">\n            <img src=\"".concat(recipe.image, "\" alt=\"image for ").concat(recipe.title, "\" class=\"card__image\">\n            <h2 class=\"card__title\">").concat(recipe.title, "</h2>\n            <p class=\"card__description\">").concat(recipe.author, "</p>\n          </div>\n          <button class=\"card__btn\" id=\"").concat(recipe_id, "\">View Recipe</button>\n        </li>");
     }
 
     recipeListEl.innerHTML = html; // addRecipeButton.disabled = !taskInputEl.value;
   }
 
   function renderRecipeDetail(recipe) {
-    var html = "\n        <img src=\"".concat(recipe.image, "\" alt=\"image for ").concat(recipe.title, "\" class=\"\">\n        <h2>").concat(recipe.title, "</h2>\n        <p>").concat(recipe.author, "</p>\n        <p>").concat(recipe.discription, "</p>\n        <p>").concat(recipe.ingredients, "</p>\n        <p>").concat(recipe.instructions, "</p>");
+    var html = "\n        <img src=\"".concat(recipe.image, "\" alt=\"image for ").concat(recipe.title, "\" class=\"\">\n        <h2>").concat(recipe.title, "</h2>\n        <p>").concat(recipe.author, "</p>\n        <p>").concat(recipe.description, "</p>\n        <p>").concat(recipe.ingredients, "</p>\n        <p>").concat(recipe.instructions, "</p>");
     recipeDetailEl.innerHTML = html; // addRecipeButton.disabled = !taskInputEl.value;
   }
 
@@ -214,7 +208,7 @@ __webpack_require__.r(__webpack_exports__);
       var title = titleInputEl.value;
       var image = imageInputEl.value;
       var description = descriptionInputEl.value;
-      var ingridients = ingridientsInputEl.value;
+      var ingredients = ingredientsInputEl.value;
       var instructions = instructionsInputEl.value;
       fetch("/recipes", {
         method: 'POST',
@@ -227,7 +221,7 @@ __webpack_require__.r(__webpack_exports__);
           title: title,
           image: image,
           description: description,
-          ingridients: ingridients,
+          ingredients: ingredients,
           instructions: instructions
         })
       })["catch"](function () {
@@ -238,32 +232,9 @@ __webpack_require__.r(__webpack_exports__);
         titleInputEl.value = '';
         imageInputEl.value = '';
         descriptionInputEl.value = '';
-        ingridientsInputEl.value = '';
+        ingredientsInputEl.value = '';
         instructionsInputEl.value = '';
         renderRecipes(recipes);
-        updateStatus('');
-      })["catch"](function (err) {
-        updateStatus(errMsgs[err.error] || err.error);
-      });
-    });
-  }
-
-  function addAbilityToDeleteItems() {
-    listEl.addEventListener('click', function (e) {
-      if (!e.target.classList.contains('delete')) {
-        return;
-      }
-
-      var index = e.target.dataset.index;
-      fetch("/todos/".concat(index), {
-        method: 'DELETE'
-      })["catch"](function () {
-        return Promise.reject({
-          error: 'network-error'
-        });
-      }).then(convertError).then(function (todos) {
-        // taskInputEl.value = '';
-        renderTodos(todos);
         updateStatus('');
       })["catch"](function (err) {
         updateStatus(errMsgs[err.error] || err.error);
@@ -278,6 +249,8 @@ __webpack_require__.r(__webpack_exports__);
       error: 'network-error'
     });
   }).then(convertError).then(function (recipes) {
+    showContent();
+    showReccipes();
     renderRecipes(recipes);
     updateStatus('');
   })["catch"](function (err) {

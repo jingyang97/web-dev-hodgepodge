@@ -30,13 +30,13 @@ import
   const logoutButton = document.querySelector('#todo-app .logout-button')
 
   const status = document.querySelector('.status');
-  // const taskInputEl = document.querySelector('#todo-app .add-task');
+
   const addRecipeButton = document.querySelector('#todo-app .addRecipe-btn');
 
   const recipeListEl = document.querySelector('main .recipe-list');
   const recipeDetailEl = document.querySelector('main .recipe-detail');
 
-  const listEl = document.querySelector('#todo-app .todos');
+
 
   const titleInputEl = document.getElementById('title');
   const imageInputEl = document.getElementById('image');
@@ -151,6 +151,7 @@ import
       performLogout()
         .then((userInfo) =>
         {
+          console.log('logout successfully');
 
           showLogin();
         })
@@ -164,22 +165,6 @@ import
     });
   }
 
-  function renderTodos(todos)
-  {
-    const html = todos.map((todo, index) =>
-    {
-
-
-
-      return `
-      <li>
-        <span class="todo ${todo.done ? "complete" : ""}" data-index="${index}">${todo.task}</span>
-        <span class="delete" data-index="${index}">X</span>
-      </li>`;
-    }).join("\n");
-    listEl.innerHTML = html;
-    // addRecipeButton.disabled = !taskInputEl.value;
-  }
 
   function renderRecipes(recipes)
   {
@@ -210,10 +195,8 @@ import
         <p>${recipe.ingredients}</p>
         <p>${recipe.instructions}</p>`;
 
-
-
     recipeDetailEl.innerHTML = html;
-    // addRecipeButton.disabled = !taskInputEl.value;
+
   }
 
   function disableButtonIfNoInput()
@@ -248,7 +231,7 @@ import
         .then(convertError)
         .then(recipe =>
         {
-          // taskInputEl.value = '';
+
           showRecipeDetail();
           renderRecipeDetail(recipe);
           updateStatus('');
@@ -316,7 +299,7 @@ import
     .then(convertError)
     .then(recipes =>
     {
-      showContent();
+
       showReccipes();
       renderRecipes(recipes);
       updateStatus('');

@@ -81,3 +81,22 @@ export const getRecipes = function ()
       return response.json().then(err => Promise.reject(err));
     });
 };
+
+export const getRecipeDetail = function (recipe_id) {
+  return  fetch(`/recipes/${recipe_id}`, {
+    method: 'get',
+  })
+  .catch(() =>
+    {
+      return Promise.reject({ error: 'network-error' });
+    })
+    .then(response =>
+    {
+      if (response.ok)
+      {
+        return response.json();
+      }
+      return response.json().then(err => Promise.reject(err));
+    });
+
+}

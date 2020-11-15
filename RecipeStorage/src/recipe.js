@@ -4,7 +4,8 @@ import { showContent, showLogin, showReccipes, showRecipeDetail } from './html';
 import
   {
     checkLoginStatus,
-    getRecipes, performLogin,
+
+    getRecipeDetail, getRecipes, performLogin,
     performLogout
   } from './services';
 
@@ -242,22 +243,17 @@ import
       console.log(e.target.id);
       const recipe_id = e.target.id;
 
-      fetch(`/recipes/${recipe_id}`, {
-        method: 'get',
+      getRecipeDetail(recipe_id)
+      .then((recipe) =>
+      {
+        showRecipeDetail();
+        renderRecipeDetail(recipe);
+        updateStatus('');
       })
-        .catch(() => Promise.reject({ error: 'network-error' }))
-        .then(convertError)
-        .then(recipe =>
-        {
-
-          showRecipeDetail();
-          renderRecipeDetail(recipe);
-          updateStatus('');
-        })
-        .catch(err =>
-        {
-          updateStatus(errMsgs[err.error] || err.error);
-        });
+      .catch(err =>
+      {
+        updateStatus(errMsgs[err.error] || err.error);
+      });
     });
   }
 

@@ -209,13 +209,7 @@ __webpack_require__.r(__webpack_exports__);
 
       console.log(e.target.id);
       var recipe_id = e.target.id;
-      fetch("/recipes/".concat(recipe_id), {
-        method: 'get'
-      })["catch"](function () {
-        return Promise.reject({
-          error: 'network-error'
-        });
-      }).then(convertError).then(function (recipe) {
+      (0,_services__WEBPACK_IMPORTED_MODULE_1__.getRecipeDetail)(recipe_id).then(function (recipe) {
         (0,_html__WEBPACK_IMPORTED_MODULE_0__.showRecipeDetail)();
         renderRecipeDetail(recipe);
         updateStatus('');
@@ -287,6 +281,7 @@ __webpack_require__.r(__webpack_exports__);
   \*************************/
 /*! namespace exports */
 /*! export checkLoginStatus [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export getRecipeDetail [provided] [no usage info] [missing usage info prevents renaming] */
 /*! export getRecipes [provided] [no usage info] [missing usage info prevents renaming] */
 /*! export performLogin [provided] [no usage info] [missing usage info prevents renaming] */
 /*! export performLogout [provided] [no usage info] [missing usage info prevents renaming] */
@@ -299,7 +294,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "checkLoginStatus": () => /* binding */ checkLoginStatus,
 /* harmony export */   "performLogin": () => /* binding */ performLogin,
 /* harmony export */   "performLogout": () => /* binding */ performLogout,
-/* harmony export */   "getRecipes": () => /* binding */ getRecipes
+/* harmony export */   "getRecipes": () => /* binding */ getRecipes,
+/* harmony export */   "getRecipeDetail": () => /* binding */ getRecipeDetail
 /* harmony export */ });
 var checkLoginStatus = function checkLoginStatus() {
   return fetch('/session', {
@@ -361,6 +357,23 @@ var performLogout = function performLogout() {
 var getRecipes = function getRecipes() {
   return fetch('/recipes', {
     method: 'GET'
+  })["catch"](function () {
+    return Promise.reject({
+      error: 'network-error'
+    });
+  }).then(function (response) {
+    if (response.ok) {
+      return response.json();
+    }
+
+    return response.json().then(function (err) {
+      return Promise.reject(err);
+    });
+  });
+};
+var getRecipeDetail = function getRecipeDetail(recipe_id) {
+  return fetch("/recipes/".concat(recipe_id), {
+    method: 'get'
   })["catch"](function () {
     return Promise.reject({
       error: 'network-error'

@@ -49,6 +49,7 @@ import
   disableButtonIfNoInput();
   addLogin();
   addLogout();
+
   addAbilityToViewRecipes();
   addAbilityToAddRecipes();
 
@@ -165,6 +166,7 @@ import
 
     });
   }
+
 
 
   function renderRecipes(recipes)

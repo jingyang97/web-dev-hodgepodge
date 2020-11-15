@@ -20,44 +20,53 @@
         <button class="home-button" type="button">Home</button>
         <button class="newRecipe-button" type="button">New Recipe</button>
         <button class="logout-button" type="button">Log out</button>
-        <div class="content">
+
+        <div class="new-recipe">
 
 
 
-            <h2>New recipe</h2>
-            <p class="title">
-              <label for="title">Title: </label>
-              <input type="text" name="title" id="title" required>
-            </p>
-            <p class="image">
-              <label for="image">Image: </label>
-              <input type="url" name="image" id="image" placeholder="Paste''' image address here.">
-            </p>
-            <p class="description">
-                <label for="description">Description: </label>
-                <textarea id="description" name="description"
-                 placeholder="Type your description here."></textarea>
-            </p>
-            <p class="ingredients">
-                <label for="ingredients">Ingredients: </label>
-                <textarea id="ingredients" name="ingredients"
-                placeholder="This will be displayed as unordered list. Swith new line to input the next bullet point." required></textarea>
-            </p>
-            <p class="instructions">
-                <label for="instructions">Instructions: </label>
-                <textarea id="instructions" name="instructions" cols=""
-               placeholder="This will be displayed as ordered list. Swith new line to type the next step." required></textarea>
-            </p>
-            <button class="addRecipe-btn">Create New Recipe</button>
-
-
+          <h2>New recipe</h2>
+          <p class="title">
+            <label for="title">Title: </label>
+            <input type="text" name="title" id="title" required>
+          </p>
+          <p class="image">
+            <label for="image">Image: </label>
+            <input type="url" name="image" id="image" placeholder="Paste''' image address here.">
+          </p>
+          <p class="description">
+              <label for="description">Description: </label>
+              <textarea id="description" name="description"
+               placeholder="Type your description here."></textarea>
+          </p>
+          <p class="ingredients">
+              <label for="ingredients">Ingredients: </label>
+              <textarea id="ingredients" name="ingredients"
+              placeholder="This will be displayed as unordered list. Swith new line to input the next bullet point." required></textarea>
+          </p>
+          <p class="instructions">
+              <label for="instructions">Instructions: </label>
+              <textarea id="instructions" name="instructions" cols=""
+             placeholder="This will be displayed as ordered list. Swith new line to type the next step." required></textarea>
+          </p>
+          <button class="addRecipe-btn">Create New Recipe</button>
         </div>
+
+
+      </div>
+
       </div>
       <main class="recipes">
 
         <ul class="recipe-list"></ul>
         <article class="recipe-detail"></article>
       </main>
+
+
+
+
+
+
     </div>
     <script src="recipe.js"></script>
   </body>

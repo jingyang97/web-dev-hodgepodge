@@ -132,7 +132,7 @@ button, select {
   z-index: 10;
   font-weight: 666;
 }
-.content {
+.new-recipe {
   padding-left: 10%;
   padding-right: 10%;
   padding-top: 5%;
@@ -143,6 +143,9 @@ button, select {
     color: black;
     width: 100%;
 
+}
+.new-recipe.hidden {
+  display: none;
 }
 
 textarea {

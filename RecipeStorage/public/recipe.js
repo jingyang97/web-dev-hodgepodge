@@ -125,17 +125,16 @@ __webpack_require__.r(__webpack_exports__);
 
   function updateStatus(message) {
     status.innerText = message;
-  }
+  } // function convertError(response)
+  // {
+  //   if (response.ok)
+  //   {
+  //     return response.json();
+  //   }
+  //   return response.json()
+  //     .then(err => Promise.reject(err));
+  // }
 
-  function convertError(response) {
-    if (response.ok) {
-      return response.json();
-    }
-
-    return response.json().then(function (err) {
-      return Promise.reject(err);
-    });
-  }
 
   function addLogin() {
     document.querySelector('#recipe-app .login button').addEventListener('click', function () {
@@ -159,7 +158,6 @@ __webpack_require__.r(__webpack_exports__);
   function addLogout() {
     logoutButton.addEventListener('click', function () {
       (0,_services__WEBPACK_IMPORTED_MODULE_1__.performLogout)().then(function (userInfo) {
-        console.log('logout successfully');
         (0,_html__WEBPACK_IMPORTED_MODULE_0__.showLogin)();
       })["catch"](function (err) {
         updateStatus(errMsgs[err.error] || err.error);
@@ -207,7 +205,6 @@ __webpack_require__.r(__webpack_exports__);
         return;
       }
 
-      console.log(e.target.id);
       var recipe_id = e.target.id;
       (0,_services__WEBPACK_IMPORTED_MODULE_1__.getRecipeDetail)(recipe_id).then(function (recipe) {
         (0,_html__WEBPACK_IMPORTED_MODULE_0__.showRecipeDetail)();
@@ -226,25 +223,31 @@ __webpack_require__.r(__webpack_exports__);
       var description = descriptionInputEl.value;
       var ingredients = ingredientsInputEl.value;
       var instructions = instructionsInputEl.value;
-      fetch("/recipes", {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        credentials: 'include',
-        redirect: 'follow',
-        body: JSON.stringify({
-          title: title,
-          image: image,
-          description: description,
-          ingredients: ingredients,
-          instructions: instructions
-        })
-      })["catch"](function () {
-        return Promise.reject({
-          error: 'network-error'
-        });
-      }).then(convertError).then(function (recipes) {
+      var new_recipe = {
+        title: title,
+        image: image,
+        description: description,
+        ingredients: ingredients,
+        instructions: instructions
+      };
+      (0,_services__WEBPACK_IMPORTED_MODULE_1__.createNewRecipe)(new_recipe) // fetch(`/recipes`, {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json'
+      //   },
+      //   credentials: 'include',
+      //   redirect: 'follow',
+      //   body: JSON.stringify({
+      //     title: title,
+      //     image: image,
+      //     description: description,
+      //     ingredients: ingredients,
+      //     instructions: instructions
+      //   })
+      // })
+      //   .catch(() => Promise.reject({ error: 'network-error' }))
+      //   .then(convertError)
+      .then(function (recipes) {
         titleInputEl.value = '';
         imageInputEl.value = '';
         descriptionInputEl.value = '';
@@ -275,6 +278,7 @@ __webpack_require__.r(__webpack_exports__);
   \*************************/
 /*! namespace exports */
 /*! export checkLoginStatus [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export createNewRecipe [provided] [no usage info] [missing usage info prevents renaming] */
 /*! export getRecipeDetail [provided] [no usage info] [missing usage info prevents renaming] */
 /*! export getRecipes [provided] [no usage info] [missing usage info prevents renaming] */
 /*! export onLoad [provided] [no usage info] [missing usage info prevents renaming] */
@@ -291,7 +295,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "performLogout": () => /* binding */ performLogout,
 /* harmony export */   "getRecipes": () => /* binding */ getRecipes,
 /* harmony export */   "getRecipeDetail": () => /* binding */ getRecipeDetail,
-/* harmony export */   "onLoad": () => /* binding */ onLoad
+/* harmony export */   "onLoad": () => /* binding */ onLoad,
+/* harmony export */   "createNewRecipe": () => /* binding */ createNewRecipe
 /* harmony export */ });
 var checkLoginStatus = function checkLoginStatus() {
   return fetch('/session', {
@@ -387,6 +392,29 @@ var getRecipeDetail = function getRecipeDetail(recipe_id) {
 var onLoad = function onLoad() {
   return fetch('/recipes/', {
     method: 'GET'
+  })["catch"](function () {
+    return Promise.reject({
+      error: 'network-error'
+    });
+  }).then(function (response) {
+    if (response.ok) {
+      return response.json();
+    }
+
+    return response.json().then(function (err) {
+      return Promise.reject(err);
+    });
+  });
+};
+var createNewRecipe = function createNewRecipe(recipe) {
+  return fetch("/recipes", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    credentials: 'include',
+    redirect: 'follow',
+    body: JSON.stringify(recipe)
   })["catch"](function () {
     return Promise.reject({
       error: 'network-error'

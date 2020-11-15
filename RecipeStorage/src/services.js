@@ -127,9 +127,9 @@ export const onLoad = function () {
       },
       credentials: 'include',
       redirect: 'follow',
-      body: JSON.stringify({
+      body: JSON.stringify(
         recipe
-      })
+      )
     })
     .catch(() =>
     {

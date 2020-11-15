@@ -67,6 +67,7 @@ app.post('/recipes', express.json(), (req, res) =>
 {
   const recipe = req.body;
   console.log(recipe);
+
   const sid = req.cookies.sid;
   const author = session.sessions[sid];
   const id = uuid();

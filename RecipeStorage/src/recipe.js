@@ -149,7 +149,6 @@ import
       performLogout()
         .then((userInfo) =>
         {
-          console.log('logout successfully');
 
           showLogin();
         })
@@ -235,7 +234,6 @@ import
       {
         return;
       }
-      console.log(e.target.id);
       const recipe_id = e.target.id;
 
       getRecipeDetail(recipe_id)

@@ -136,7 +136,9 @@ import
         })
         .catch(err =>
         {
-          updateStatus(errMsgs[err.error] || err.error);
+          console.log(err);
+          console.log("err");
+          updateStatus(err);
           showLogin();
           showReccipes();
         });

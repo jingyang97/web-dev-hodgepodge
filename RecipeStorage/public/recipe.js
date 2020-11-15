@@ -146,7 +146,9 @@ __webpack_require__.r(__webpack_exports__);
         (0,_html__WEBPACK_IMPORTED_MODULE_0__.showReccipes)();
         renderRecipes(userInfo);
       })["catch"](function (err) {
-        updateStatus(errMsgs[err.error] || err.error);
+        console.log(err);
+        console.log("err");
+        updateStatus(err);
         (0,_html__WEBPACK_IMPORTED_MODULE_0__.showLogin)();
         (0,_html__WEBPACK_IMPORTED_MODULE_0__.showReccipes)();
       });

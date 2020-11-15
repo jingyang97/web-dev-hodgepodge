@@ -43,7 +43,8 @@ app.post('/session', express.json(), (req, res) =>
 
   if (errors.length > 0)
   {
-    res.status(400).json({ errors });
+    res.status(400).json(errors);
+
     return;
   }
   if (username in session.username_sid)
@@ -61,7 +62,7 @@ app.post('/session', express.json(), (req, res) =>
 
 
 
-// ================================= recipes =================================
+
 app.get('/recipes', (req, res) =>
 {
   res.json(session.recipes_ls);

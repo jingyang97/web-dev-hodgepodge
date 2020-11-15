@@ -50,6 +50,11 @@ button, select {
 
 }
 
+.status {
+  color: black;
+  text-align: center;
+
+}
 
 
 #todo-app .login.hidden {

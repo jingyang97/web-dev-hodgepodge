@@ -171,7 +171,7 @@ __webpack_require__.r(__webpack_exports__);
 
     for (var recipe_id in recipes) {
       var recipe = recipes[recipe_id];
-      html += "\n        <li class=\"card\">\n          <div class=\"card__body\">\n            <img src=\"".concat(recipe.image, "\" alt=\"image for ").concat(recipe.title, "\" class=\"card__image\">\n            <h2 class=\"card__title\">").concat(recipe.title, "</h2>\n            <p class=\"card__description\">").concat(recipe.author, "</p>\n          </div>\n          <button class=\"card__btn\" id=\"").concat(recipe_id, "\">View Recipe</button>\n        </li>");
+      html += "\n        <li class=\"card\">\n          <div class=\"card__body\">\n            <img src=\"".concat(recipe.image, "\" alt=\"image for ").concat(recipe.title, "\" class=\"card__image\">\n            <h2 class=\"card__title\">").concat(recipe.title, "</h2>\n            <p class=\"card__description\">By ").concat(recipe.author, "</p>\n          </div>\n          <button class=\"card__btn\" id=\"").concat(recipe_id, "\">View Recipe</button>\n        </li>");
     }
 
     recipeListEl.innerHTML = html; // addRecipeButton.disabled = !taskInputEl.value;

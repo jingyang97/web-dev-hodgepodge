@@ -175,7 +175,7 @@ import
           <div class="card__body">
             <img src="${recipe.image}" alt="image for ${recipe.title}" class="card__image">
             <h2 class="card__title">${recipe.title}</h2>
-            <p class="card__description">${recipe.author}</p>
+            <p class="card__description">By ${recipe.author}</p>
           </div>
           <button class="card__btn" id="${recipe_id}">View Recipe</button>
         </li>`;

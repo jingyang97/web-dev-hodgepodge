@@ -26,32 +26,35 @@
       </main>
 
       <div class="new-recipe">
-        <h2>New recipe</h2>
-        <p class="title">
-          <label for="title">Title: </label>
-          <input type="text" name="title" id="title" required>
-        </p>
-        <p class="image">
-          <label for="image">Image: </label>
-          <a>Here's a dummy link for you to test (optional): <br />https://pic1.zhimg.com/v2-e33791d3f7bc3b1d0b9aeb6f9699e419_1440w.jpg?source=172ae18b</a>
-          <input type="url" name="image" id="image" placeholder="Paste image address here.">
-        </p>
-        <p class="description">
+        <form>
+
+          <h2>New recipe</h2>
+          <p class="title">
+            <label for="title">Title: </label>
+            <input type="text" name="title" id="title" required>
+          </p>
+          <p class="image">
+            <label for="image">Image: </label>
+            <a>Here's a dummy link for you to test (optional): <br />https://pic1.zhimg.com/v2-e33791d3f7bc3b1d0b9aeb6f9699e419_1440w.jpg?source=172ae18b</a>
+            <input type="url" name="image" id="image" placeholder="Paste image address here.">
+          </p>
+          <p class="description">
             <label for="description">Description: </label>
             <textarea id="description" name="description"
             placeholder="Type your description here."></textarea>
-        </p>
-        <p class="ingredients">
+          </p>
+          <p class="ingredients">
             <label for="ingredients">Ingredients: </label>
             <textarea id="ingredients" name="ingredients"
             placeholder="This will be displayed as unordered list. Swith new line to input the next bullet point." required></textarea>
-        </p>
-        <p class="instructions">
+          </p>
+          <p class="instructions">
             <label for="instructions">Instructions: </label>
             <textarea id="instructions" name="instructions"
-          placeholder="This will be displayed as ordered list. Swith new line to type the next step." required></textarea>
-        </p>
-        <button class="addRecipe-btn">Create New Recipe</button>
+            placeholder="This will be displayed as ordered list. Swith new line to type the next step." required></textarea>
+          </p>
+          <button type="button" class="addRecipe-btn">Create New Recipe</button>
+        </form>
       </div>
 
     </div>

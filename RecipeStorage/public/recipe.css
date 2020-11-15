@@ -21,12 +21,10 @@
 
 body {
   min-height: 450px;
-
   margin: 0;
   background: pink;
   color: #fff;
   font-family: Oxygen, sans-serif;
-
 }
 
 button, select {
@@ -42,10 +40,18 @@ button, select {
     transition: background 200ms ease-in, color 200ms ease-in;
 }
 
+a:link {
+  color: white;
+}
+
+a:visited {
+  color: white;
+}
+
+
 .status {
   color: black;
   text-align: center;
-
 }
 
 
@@ -62,10 +68,6 @@ button, select {
   text-align: center;
 }
 
-
-
-
-
 .recipe-app {
   position: absolute;
   top: 50%;
@@ -74,12 +76,15 @@ button, select {
   width: 90%;
   height: 90%;
   overflow-y: scroll;
-
-
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 7px 30px rgba(62, 9, 11, .3);
 }
+
+
+
+/* cover image*/
+
 .cover-img .cover-inner {
   background: url('/images/cover.jpg');
   height: 300px;
@@ -111,6 +116,11 @@ button, select {
   z-index: 10;
   font-weight: 666;
 }
+
+
+
+/* new recipe form */
+
 .new-recipe {
   padding-left: 10%;
   padding-right: 10%;
@@ -123,15 +133,19 @@ button, select {
     width: 100%;
 
 }
+
 .new-recipe h2 {
   text-align: center;
 }
+
 .new-recipe a {
   color: gray;
 }
+
 .new-recipe.hidden {
   display: none;
 }
+
 label {
   margin: 10;
   display: block;
@@ -144,8 +158,8 @@ textarea {
   font-size: inherit;
   margin-bottom: 10px;
   margin-top: 10px;
-
 }
+
 input  {
   width: 70%;
   height: 2em;
@@ -157,6 +171,9 @@ input  {
 }
 
 
+
+/* recipe list */
+
 .recipe-list {
   font-family: Oxygen, sans-serif;
   margin: 2rem;
@@ -166,9 +183,11 @@ input  {
   justify-content: center;
   overflow-y: scroll;
 }
+
 .recipe-list.hidden {
   display: none;
 }
+
 .recipe-list h2{
   display: block;
   font-size: 1.5em;
@@ -181,6 +200,7 @@ input  {
   cursor: pointer;
   padding: 5px 10px;
 }
+
 .recipe-list p{
   backface-visibility: hidden;
   display: block;
@@ -188,13 +208,12 @@ input  {
   margin-block-end: 1em;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
-
   color: black;
-
 }
 
 
 
+/* recipe card */
 
 .card {
   overflow: hidden;
@@ -246,6 +265,9 @@ input  {
   }
 
 
+
+/* RECIPE DETAIL */
+
 .recipe-detail {
   color: black;
   padding-bottom: 10%;
@@ -253,9 +275,11 @@ input  {
   padding-top: 3%;
   padding-right: 10%;
 }
+
 .recipe-detail.hidden {
   display: none;
 }
+
 article img {
   height: 27rem;
   border-top-left-radius: 10px;
@@ -265,25 +289,31 @@ article img {
   width: 100%;
   object-fit: cover;
 }
+
 article h2 {
   text-align: center;
 }
+
 article .author {
   text-align: center;
   font-weight: bold;
 }
+
 article .description {
   padding: 5%;
   text-align: center;
   font-family: Apple Chancery;
 }
+
 article .ingredients{
   padding: 5%;
   list-style-type: circle;
 }
+
 li {
   margin: 10px;
 }
+
 article .instructions{
   padding: 5%;
   list-style-type: lower-alpha;

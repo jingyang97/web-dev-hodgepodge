@@ -197,6 +197,15 @@ __webpack_require__.r(__webpack_exports__);
     usernameInputEl.addEventListener('input', function () {
       loginButton.disabled = !usernameInputEl.value;
     });
+    titleInputEl.addEventListener('input', function () {
+      addRecipeButton.disabled = !titleInputEl.value;
+    });
+    ingredientsInputEl.addEventListener('input', function () {
+      addRecipeButton.disabled = !ingredientsInputEl.value;
+    });
+    instructionsInputEl.addEventListener('input', function () {
+      addRecipeButton.disabled = !instructionsInputEl.value;
+    });
   }
 
   function addAbilityToViewRecipes() {

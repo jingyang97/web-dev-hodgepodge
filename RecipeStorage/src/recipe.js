@@ -223,6 +223,18 @@ import
     {
       loginButton.disabled = !usernameInputEl.value;
     })
+    titleInputEl.addEventListener('input', () =>
+    {
+      addRecipeButton.disabled = !titleInputEl.value;
+    })
+    ingredientsInputEl.addEventListener('input', () =>
+    {
+      addRecipeButton.disabled = !ingredientsInputEl.value;
+    })
+    instructionsInputEl.addEventListener('input', () =>
+    {
+      addRecipeButton.disabled = !instructionsInputEl.value;
+    })
   }
 
   function addAbilityToViewRecipes()

@@ -88,6 +88,7 @@ import
             appState.error = '';
             appState.todos = recipes;
             renderRecipes(recipes);
+            updateStatus('');
           });
       }, 3000);
     }
@@ -137,9 +138,8 @@ import
         })
         .catch(err =>
         {
-          console.log(err);
-          console.log("err");
-          updateStatus(err);
+
+          updateStatus(err[0]);
           showLogin();
           showReccipes();
         });

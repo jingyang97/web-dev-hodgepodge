@@ -1,23 +1,5 @@
 const uuid = require('uuid').v4;
-const sessions = {
-    001: {
-      username: 'Jingbaba',
-      recipes: [
-        'Jingbaba_001',
-        'Jingbaba_002',
-      ]
-    },
-    002: {
-      username: 'BrendaBlanco',
-      recipes: [
-        'BrendaBlanco_001',
-      ]
-    },
-    003: {
-      username: '',
-      recipes: []
-    }
-  };
+const sessions = {};
 
 const recipes_ls = {
 Jingbaba_001: {
@@ -115,7 +97,7 @@ Amanda_002: {
 },
 };
 
-const username_sid = {};
+
 
 const isValidSession = function (sid)
 {
@@ -144,18 +126,13 @@ return errors;
 const createSession = function (username)
 {
 const sid = uuid();
-sessions[sid] = {
-    username: username,
-    recipes: []
-};
-username_sid[username] = sid;
+sessions[sid] = username;
 return sid;
 };
 
 const session = {
     sessions,
     recipes_ls,
-    username_sid,
     isValidSession,
     validateUsername,
     createSession

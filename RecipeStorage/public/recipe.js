@@ -111,6 +111,7 @@ __webpack_require__.r(__webpack_exports__);
           appState.error = '';
           appState.todos = recipes;
           renderRecipes(recipes);
+          updateStatus('');
         });
       }, 3000);
     } // For when a user logs out:
@@ -148,9 +149,7 @@ __webpack_require__.r(__webpack_exports__);
         (0,_html__WEBPACK_IMPORTED_MODULE_0__.showReccipes)();
         renderRecipes(userInfo);
       })["catch"](function (err) {
-        console.log(err);
-        console.log("err");
-        updateStatus(err);
+        updateStatus(err[0]);
         (0,_html__WEBPACK_IMPORTED_MODULE_0__.showLogin)();
         (0,_html__WEBPACK_IMPORTED_MODULE_0__.showReccipes)();
       });

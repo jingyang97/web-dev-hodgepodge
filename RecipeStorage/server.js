@@ -33,7 +33,8 @@ app.delete('/session', (req, res) =>
   const sid = req.cookies.sid;
 
   res.cookie('sid', '');
-  res.status(200).json(session.sessions[sid]);
+  delete session.sessions[sid];
+  res.status(200).json(session.recipes_ls);
 });
 
 app.post('/session', express.json(), (req, res) =>
@@ -47,17 +48,11 @@ app.post('/session', express.json(), (req, res) =>
 
     return;
   }
-  if (username in session.username_sid)
-  {
-    const sid = session.username_sid[username];
-    res.cookie('sid', sid);
-    res.status(200).json(session.recipes_ls);
-  } else
-  {
-    const sid = session.createSession(username);
-    res.cookie('sid', sid);
-    res.status(200).json(session.recipes_ls);
-  }
+
+  const sid = session.createSession(username);
+  res.cookie('sid', sid);
+  res.status(200).json(session.recipes_ls);
+
 });
 
 
@@ -73,7 +68,7 @@ app.post('/recipes', express.json(), (req, res) =>
   const recipe = req.body;
   console.log(recipe);
   const sid = req.cookies.sid;
-  const author = session.sessions[sid].username;
+  const author = session.sessions[sid];
   const id = uuid();
   const recipe_id = `${author}_${id}`;
 
@@ -85,8 +80,8 @@ app.post('/recipes', express.json(), (req, res) =>
     ingredients: recipe.ingredients,
     instructions: recipe.instructions
   }
-  session.sessions[sid].recipes.push(recipe_id);
   session.recipes_ls[recipe_id] = new_recipe;
+
   res.json(session.recipes_ls);
 });
 

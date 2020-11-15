@@ -247,9 +247,37 @@ ul li{
 
 
 .recipe-detail {
-  font-family: inherit;
   color: black;
+  padding-bottom: 10%;
+  padding-left: 10%;
+  padding-top: 3%;
+  padding-right: 10%;
 }
 .recipe-detail.hidden {
   display: none;
+}
+article img {
+
+  height: 500px;
+
+
+
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+
+  background-size: cover;
+  background-position: 10% 20%;
+
+  position: relative;
+}
+article h2 {
+  text-align: center;
+}
+article .author {
+  text-align: center;
+  font-weight: bold;
+}
+article .description {
+  text-align: center;
+  font-family: Apple Chancery;
 }

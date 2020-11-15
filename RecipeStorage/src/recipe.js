@@ -132,7 +132,6 @@ import
           poll(true);
           showContent();
           showReccipes();
-          // renderTodos(userInfo.todos);
           renderRecipes(userInfo);
         })
         .catch(err =>
@@ -185,15 +184,35 @@ import
     // addRecipeButton.disabled = !taskInputEl.value;
   }
 
+  function strArrayProcessor(plainText) {
+    const strArray = plainText.split("\n\n");
+
+
+
+    const processedArray = strArray.map((s) =>
+    {
+      return `
+      <li>
+        ${s}
+      </li>`;
+    }).join("");
+    return processedArray;
+
+  }
+
   function renderRecipeDetail(recipe)
   {
+    const ingredients = strArrayProcessor(recipe.ingredients);
+    const instructions = strArrayProcessor(recipe.instructions);
     let html = `
         <img src="${recipe.image}" alt="image for ${recipe.title}" class="">
         <h2>${recipe.title}</h2>
-        <p>${recipe.author}</p>
-        <p>${recipe.description}</p>
-        <p>${recipe.ingredients}</p>
-        <p>${recipe.instructions}</p>`;
+        <p class="author">${recipe.author}</p>
+        <p class="description">${recipe.description}</p>
+        <h3>Ingredients</h3>
+        <ul class="ingredients">${ingredients}</ul>
+        <h3>Instructions</h3>
+        <ol class="instructions">${instructions}</ol>`;
 
     recipeDetailEl.innerHTML = html;
 
@@ -201,15 +220,10 @@ import
 
   function disableButtonIfNoInput()
   {
-
     usernameInputEl.addEventListener('input', () =>
     {
       loginButton.disabled = !usernameInputEl.value;
     })
-    // taskInputEl.addEventListener('input', () =>
-    // {
-    //   addRecipeButton.disabled = !taskInputEl.value;
-    // });
   }
 
   function addAbilityToViewRecipes()

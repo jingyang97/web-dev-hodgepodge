@@ -143,8 +143,7 @@ __webpack_require__.r(__webpack_exports__);
         appState.error = '';
         poll(true);
         (0,_html__WEBPACK_IMPORTED_MODULE_0__.showContent)();
-        (0,_html__WEBPACK_IMPORTED_MODULE_0__.showReccipes)(); // renderTodos(userInfo.todos);
-
+        (0,_html__WEBPACK_IMPORTED_MODULE_0__.showReccipes)();
         renderRecipes(userInfo);
       })["catch"](function (err) {
         updateStatus(errMsgs[err.error] || err.error);
@@ -178,18 +177,25 @@ __webpack_require__.r(__webpack_exports__);
     recipeListEl.innerHTML = html; // addRecipeButton.disabled = !taskInputEl.value;
   }
 
+  function strArrayProcessor(plainText) {
+    var strArray = plainText.split("\n\n");
+    var processedArray = strArray.map(function (s) {
+      return "\n      <li>\n        ".concat(s, "\n      </li>");
+    }).join("");
+    return processedArray;
+  }
+
   function renderRecipeDetail(recipe) {
-    var html = "\n        <img src=\"".concat(recipe.image, "\" alt=\"image for ").concat(recipe.title, "\" class=\"\">\n        <h2>").concat(recipe.title, "</h2>\n        <p>").concat(recipe.author, "</p>\n        <p>").concat(recipe.description, "</p>\n        <p>").concat(recipe.ingredients, "</p>\n        <p>").concat(recipe.instructions, "</p>");
+    var ingredients = strArrayProcessor(recipe.ingredients);
+    var instructions = strArrayProcessor(recipe.instructions);
+    var html = "\n        <img src=\"".concat(recipe.image, "\" alt=\"image for ").concat(recipe.title, "\" class=\"\">\n        <h2>").concat(recipe.title, "</h2>\n        <p class=\"author\">").concat(recipe.author, "</p>\n        <p class=\"description\">").concat(recipe.description, "</p>\n        <h3>Ingredients</h3>\n        <ul class=\"ingredients\">").concat(ingredients, "</ul>\n        <h3>Instructions</h3>\n        <ol class=\"instructions\">").concat(instructions, "</ol>");
     recipeDetailEl.innerHTML = html;
   }
 
   function disableButtonIfNoInput() {
     usernameInputEl.addEventListener('input', function () {
       loginButton.disabled = !usernameInputEl.value;
-    }); // taskInputEl.addEventListener('input', () =>
-    // {
-    //   addRecipeButton.disabled = !taskInputEl.value;
-    // });
+    });
   }
 
   function addAbilityToViewRecipes() {

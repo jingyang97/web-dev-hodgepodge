@@ -15,7 +15,7 @@ import
   const appState = {
     pollId: null,
     isLoggedIn: false,
-    todos: [],
+    recipes: {},
     error: '',
   };
 
@@ -24,15 +24,15 @@ import
     'network-error': 'There was a problem connecting to the network, try again',
   };
 
-  const usernameInputEl = document.querySelector('#todo-app .username-input');
+  const usernameInputEl = document.querySelector('#recipe-app .username-input');
 
-  const loginButton = document.querySelector('#todo-app .login button')
+  const loginButton = document.querySelector('#recipe-app .login button')
 
-  const logoutButton = document.querySelector('#todo-app .logout-button')
+  const logoutButton = document.querySelector('#recipe-app .logout-button')
 
   const status = document.querySelector('.status');
 
-  const addRecipeButton = document.querySelector('#todo-app .addRecipe-btn');
+  const addRecipeButton = document.querySelector('#recipe-app .addRecipe-btn');
 
   const recipeListEl = document.querySelector('main .recipe-list');
   const recipeDetailEl = document.querySelector('main .recipe-detail');
@@ -87,7 +87,7 @@ import
           .then(recipes =>
           {
             appState.error = '';
-            appState.todos = recipes;
+            appState.recipes = recipes;
             renderRecipes(recipes);
             updateStatus('');
           });
@@ -120,7 +120,7 @@ import
 
   function addLogin()
   {
-    document.querySelector('#todo-app .login button').addEventListener('click', () =>
+    document.querySelector('#recipe-app .login button').addEventListener('click', () =>
     {
 
       const username = usernameInputEl.value;
@@ -130,7 +130,7 @@ import
         {
 
           appState.isLoggedIn = true;
-          appState.todos = userInfo;
+          appState.recipes = userInfo;
           appState.error = '';
           poll(true);
           showContent();

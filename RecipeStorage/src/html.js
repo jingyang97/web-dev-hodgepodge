@@ -2,9 +2,9 @@
 
 export const showContent = function ()
   {
-    document.querySelector('#todo-app .login').classList.add('hidden');
-    document.querySelector('#todo-app .logged-in').classList.remove('hidden');
-    document.querySelector('#todo-app .new-recipe').classList.remove('hidden');
+    document.querySelector('#recipe-app .login').classList.add('hidden');
+    document.querySelector('#recipe-app .logged-in').classList.remove('hidden');
+    document.querySelector('#recipe-app .new-recipe').classList.remove('hidden');
 
 
 
@@ -12,16 +12,16 @@ export const showContent = function ()
 
 export const showLogin = function ()
 {
-    document.querySelector('#todo-app .login').classList.remove('hidden');
-    document.querySelector('#todo-app .logged-in').classList.add('hidden');
-    document.querySelector('#todo-app .new-recipe').classList.add('hidden');
+    document.querySelector('#recipe-app .login').classList.remove('hidden');
+    document.querySelector('#recipe-app .logged-in').classList.add('hidden');
+    document.querySelector('#recipe-app .new-recipe').classList.add('hidden');
 
 };
 
 export const showReccipes = function ()
 {
-    document.querySelector('#todo-app .recipe-list').classList.remove('hidden');
-    document.querySelector('#todo-app .recipe-detail').classList.add('hidden');
+    document.querySelector('#recipe-app .recipe-list').classList.remove('hidden');
+    document.querySelector('#recipe-app .recipe-detail').classList.add('hidden');
 
 
 };
@@ -29,8 +29,8 @@ export const showReccipes = function ()
 export const showRecipeDetail = function ()
 {
 
-    document.querySelector('#todo-app .recipe-list').classList.add('hidden');
-    document.querySelector('#todo-app .recipe-detail').classList.remove('hidden');
+    document.querySelector('#recipe-app .recipe-list').classList.add('hidden');
+    document.querySelector('#recipe-app .recipe-detail').classList.remove('hidden');
 
   };
 

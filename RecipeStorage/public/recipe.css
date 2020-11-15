@@ -49,13 +49,13 @@ button, select {
 }
 
 
-#todo-app .login.hidden {
+#recipe-app .login.hidden {
   display: none;
 }
 .login {
   text-align: center;
 }
-#todo-app .logged-in.hidden {
+#recipe-app .logged-in.hidden {
   display: none;
 }
 .logged-in {

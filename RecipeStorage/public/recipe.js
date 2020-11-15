@@ -25,22 +25,22 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var showContent = function showContent() {
-  document.querySelector('#todo-app .login').classList.add('hidden');
-  document.querySelector('#todo-app .logged-in').classList.remove('hidden');
-  document.querySelector('#todo-app .new-recipe').classList.remove('hidden');
+  document.querySelector('#recipe-app .login').classList.add('hidden');
+  document.querySelector('#recipe-app .logged-in').classList.remove('hidden');
+  document.querySelector('#recipe-app .new-recipe').classList.remove('hidden');
 };
 var showLogin = function showLogin() {
-  document.querySelector('#todo-app .login').classList.remove('hidden');
-  document.querySelector('#todo-app .logged-in').classList.add('hidden');
-  document.querySelector('#todo-app .new-recipe').classList.add('hidden');
+  document.querySelector('#recipe-app .login').classList.remove('hidden');
+  document.querySelector('#recipe-app .logged-in').classList.add('hidden');
+  document.querySelector('#recipe-app .new-recipe').classList.add('hidden');
 };
 var showReccipes = function showReccipes() {
-  document.querySelector('#todo-app .recipe-list').classList.remove('hidden');
-  document.querySelector('#todo-app .recipe-detail').classList.add('hidden');
+  document.querySelector('#recipe-app .recipe-list').classList.remove('hidden');
+  document.querySelector('#recipe-app .recipe-detail').classList.add('hidden');
 };
 var showRecipeDetail = function showRecipeDetail() {
-  document.querySelector('#todo-app .recipe-list').classList.add('hidden');
-  document.querySelector('#todo-app .recipe-detail').classList.remove('hidden');
+  document.querySelector('#recipe-app .recipe-list').classList.add('hidden');
+  document.querySelector('#recipe-app .recipe-detail').classList.remove('hidden');
 };
 
 /***/ }),
@@ -66,18 +66,18 @@ __webpack_require__.r(__webpack_exports__);
   var appState = {
     pollId: null,
     isLoggedIn: false,
-    todos: [],
+    recipes: {},
     error: ''
   };
   var errMsgs = {
     'duplicate': 'That name already exists',
     'network-error': 'There was a problem connecting to the network, try again'
   };
-  var usernameInputEl = document.querySelector('#todo-app .username-input');
-  var loginButton = document.querySelector('#todo-app .login button');
-  var logoutButton = document.querySelector('#todo-app .logout-button');
+  var usernameInputEl = document.querySelector('#recipe-app .username-input');
+  var loginButton = document.querySelector('#recipe-app .login button');
+  var logoutButton = document.querySelector('#recipe-app .logout-button');
   var status = document.querySelector('.status');
-  var addRecipeButton = document.querySelector('#todo-app .addRecipe-btn');
+  var addRecipeButton = document.querySelector('#recipe-app .addRecipe-btn');
   var recipeListEl = document.querySelector('main .recipe-list');
   var recipeDetailEl = document.querySelector('main .recipe-detail');
   var titleInputEl = document.getElementById('title');
@@ -109,7 +109,7 @@ __webpack_require__.r(__webpack_exports__);
           updateStatus(errMsgs[err.error] || err.error);
         }).then(function (recipes) {
           appState.error = '';
-          appState.todos = recipes;
+          appState.recipes = recipes;
           renderRecipes(recipes);
           updateStatus('');
         });
@@ -138,11 +138,11 @@ __webpack_require__.r(__webpack_exports__);
   }
 
   function addLogin() {
-    document.querySelector('#todo-app .login button').addEventListener('click', function () {
+    document.querySelector('#recipe-app .login button').addEventListener('click', function () {
       var username = usernameInputEl.value;
       (0,_services__WEBPACK_IMPORTED_MODULE_1__.performLogin)(username).then(function (userInfo) {
         appState.isLoggedIn = true;
-        appState.todos = userInfo;
+        appState.recipes = userInfo;
         appState.error = '';
         poll(true);
         (0,_html__WEBPACK_IMPORTED_MODULE_0__.showContent)();

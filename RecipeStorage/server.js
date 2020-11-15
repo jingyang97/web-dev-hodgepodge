@@ -59,63 +59,6 @@ app.post('/session', express.json(), (req, res) =>
   }
 });
 
-app.get('/todos', (req, res) =>
-{
-  const sid = req.cookies.sid;
-  if (sid && sid in sessions)
-  {
-    res.json(session.sessions[sid].todos);
-  } else
-  {
-    res.json([]);
-  }
-
-});
-
-app.post('/todos/:task', express.json(), (req, res) =>
-{
-  const task = req.params.task;
-  const sid = req.cookies.sid;
-  if (!task)
-  {
-    res.status(400).json({ error: 'missing-task' });
-    return;
-  }
-  const new_todo = {
-    task: task,
-    done: false
-  }
-  sessions[sid].todos.push(new_todo);
-  res.json(session.sessions[sid].todos);
-});
-
-app.patch('/todos/:index', express.json(), (req, res) =>
-{
-  const index = req.params.index;
-
-  const sid = req.cookies.sid;
-  if (!index)
-  {
-    res.status(400).json({ error: 'missing-index' });
-    return;
-  }
-
-  session.sessions[sid].todos[index].done = !session.sessions[sid].todos[index].done;
-  res.json(session.sessions[sid].todos);
-});
-
-app.delete('/todos/:index', (req, res) =>
-{
-  const sid = req.cookies.sid;
-  const index = req.params.index;
-  if (!index)
-  {
-    res.status(400).json({ error: 'missing-index' });
-    return;
-  }
-  session.sessions[sid].todos.splice(index, 1);
-  res.json(session.sessions[sid].todos);
-});
 
 
 // ================================= recipes =================================

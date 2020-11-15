@@ -178,7 +178,7 @@ __webpack_require__.r(__webpack_exports__);
   }
 
   function strArrayProcessor(plainText) {
-    var strArray = plainText.split("\n\n");
+    var strArray = plainText.split("\n");
     var processedArray = strArray.map(function (s) {
       return "\n      <li>\n        ".concat(s, "\n      </li>");
     }).join("");
@@ -188,7 +188,7 @@ __webpack_require__.r(__webpack_exports__);
   function renderRecipeDetail(recipe) {
     var ingredients = strArrayProcessor(recipe.ingredients);
     var instructions = strArrayProcessor(recipe.instructions);
-    var html = "\n        <img src=\"".concat(recipe.image, "\" alt=\"image for ").concat(recipe.title, "\" class=\"\">\n        <h2>").concat(recipe.title, "</h2>\n        <p class=\"author\">").concat(recipe.author, "</p>\n        <p class=\"description\">").concat(recipe.description, "</p>\n        <h3>Ingredients</h3>\n        <ul class=\"ingredients\">").concat(ingredients, "</ul>\n        <h3>Instructions</h3>\n        <ol class=\"instructions\">").concat(instructions, "</ol>");
+    var html = "\n        <img src=\"".concat(recipe.image, "\" alt=\"image for ").concat(recipe.title, "\" class=\"\">\n        <h2>").concat(recipe.title, "</h2>\n        <p class=\"author\">Written By: ").concat(recipe.author, "</p>\n        <p class=\"description\">").concat(recipe.description, "</p>\n        <h3>Ingredients</h3>\n        <ul class=\"ingredients\">").concat(ingredients, "</ul>\n        <h3>Instructions</h3>\n        <ol class=\"instructions\">").concat(instructions, "</ol>");
     recipeDetailEl.innerHTML = html;
   }
 
@@ -285,7 +285,6 @@ __webpack_require__.r(__webpack_exports__);
 /*! namespace exports */
 /*! export checkLoginStatus [provided] [no usage info] [missing usage info prevents renaming] */
 /*! export getRecipes [provided] [no usage info] [missing usage info prevents renaming] */
-/*! export getTodos [provided] [no usage info] [missing usage info prevents renaming] */
 /*! export performLogin [provided] [no usage info] [missing usage info prevents renaming] */
 /*! export performLogout [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
@@ -297,7 +296,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "checkLoginStatus": () => /* binding */ checkLoginStatus,
 /* harmony export */   "performLogin": () => /* binding */ performLogin,
 /* harmony export */   "performLogout": () => /* binding */ performLogout,
-/* harmony export */   "getTodos": () => /* binding */ getTodos,
 /* harmony export */   "getRecipes": () => /* binding */ getRecipes
 /* harmony export */ });
 var checkLoginStatus = function checkLoginStatus() {
@@ -343,23 +341,6 @@ var performLogin = function performLogin(username) {
 var performLogout = function performLogout() {
   return fetch('/session', {
     method: 'DELETE'
-  })["catch"](function () {
-    return Promise.reject({
-      error: 'network-error'
-    });
-  }).then(function (response) {
-    if (response.ok) {
-      return response.json();
-    }
-
-    return response.json().then(function (err) {
-      return Promise.reject(err);
-    });
-  });
-};
-var getTodos = function getTodos() {
-  return fetch('/todos', {
-    method: 'GET'
   })["catch"](function () {
     return Promise.reject({
       error: 'network-error'

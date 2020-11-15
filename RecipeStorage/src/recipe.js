@@ -185,7 +185,7 @@ import
   }
 
   function strArrayProcessor(plainText) {
-    const strArray = plainText.split("\n\n");
+    const strArray = plainText.split("\n");
 
 
 
@@ -207,7 +207,7 @@ import
     let html = `
         <img src="${recipe.image}" alt="image for ${recipe.title}" class="">
         <h2>${recipe.title}</h2>
-        <p class="author">${recipe.author}</p>
+        <p class="author">Written By: ${recipe.author}</p>
         <p class="description">${recipe.description}</p>
         <h3>Ingredients</h3>
         <ul class="ingredients">${ingredients}</ul>

@@ -38,9 +38,7 @@ button, input, select, textarea {
   font-size: inherit;
   line-height: inherit;
 }
-ul li{
-  list-style-type:none;
-}
+
 
 #todo-app .login.hidden {
   display: none;
@@ -278,6 +276,18 @@ article .author {
   font-weight: bold;
 }
 article .description {
+  padding: 5%;
   text-align: center;
   font-family: Apple Chancery;
+}
+article .ingredients{
+  padding: 5%;
+  list-style-type: circle;
+}
+li {
+  margin: 10px;
+}
+article .instructions{
+  padding: 5%;
+  list-style-type: lower-alpha;
 }

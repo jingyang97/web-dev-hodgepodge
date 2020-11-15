@@ -4,8 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "build": "npx webpack",
-    "start": "node server.js"
+    "start": "npx webpack; node server.js"
   },
   "author": "Jing Yang",
   "license": "ISC",

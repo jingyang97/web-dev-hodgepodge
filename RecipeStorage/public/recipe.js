@@ -9,7 +9,6 @@
 /*! namespace exports */
 /*! export showContent [provided] [no usage info] [missing usage info prevents renaming] */
 /*! export showLogin [provided] [no usage info] [missing usage info prevents renaming] */
-/*! export showNewRecipeForm [provided] [no usage info] [missing usage info prevents renaming] */
 /*! export showReccipes [provided] [no usage info] [missing usage info prevents renaming] */
 /*! export showRecipeDetail [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
@@ -21,15 +20,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "showContent": () => /* binding */ showContent,
 /* harmony export */   "showLogin": () => /* binding */ showLogin,
 /* harmony export */   "showReccipes": () => /* binding */ showReccipes,
-/* harmony export */   "showRecipeDetail": () => /* binding */ showRecipeDetail,
-/* harmony export */   "showNewRecipeForm": () => /* binding */ showNewRecipeForm
+/* harmony export */   "showRecipeDetail": () => /* binding */ showRecipeDetail
 /* harmony export */ });
 
 
 var showContent = function showContent() {
   document.querySelector('#todo-app .login').classList.add('hidden');
   document.querySelector('#todo-app .logged-in').classList.remove('hidden');
-  document.querySelector('#todo-app .new-recipe').classList.add('hidden');
+  document.querySelector('#todo-app .new-recipe').classList.remove('hidden');
 };
 var showLogin = function showLogin() {
   document.querySelector('#todo-app .login').classList.remove('hidden');
@@ -39,17 +37,10 @@ var showLogin = function showLogin() {
 var showReccipes = function showReccipes() {
   document.querySelector('#todo-app .recipe-list').classList.remove('hidden');
   document.querySelector('#todo-app .recipe-detail').classList.add('hidden');
-  document.querySelector('#todo-app .new-recipe').classList.add('hidden');
 };
 var showRecipeDetail = function showRecipeDetail() {
-  document.querySelector('#todo-app .new-recipe').classList.add('hidden');
   document.querySelector('#todo-app .recipe-list').classList.add('hidden');
   document.querySelector('#todo-app .recipe-detail').classList.remove('hidden');
-};
-var showNewRecipeForm = function showNewRecipeForm() {
-  document.querySelector('#todo-app .new-recipe').classList.remove('hidden');
-  document.querySelector('#todo-app .recipe-list').classList.add('hidden');
-  document.querySelector('#todo-app .recipe-detail').classList.add('hidden');
 };
 
 /***/ }),
@@ -97,7 +88,6 @@ __webpack_require__.r(__webpack_exports__);
   disableButtonIfNoInput();
   addLogin();
   addLogout();
-  displayNewRecipeForm();
   addAbilityToViewRecipes();
   addAbilityToAddRecipes(); // Check for login
 
@@ -177,12 +167,6 @@ __webpack_require__.r(__webpack_exports__);
         (0,_html__WEBPACK_IMPORTED_MODULE_0__.showContent)();
         (0,_html__WEBPACK_IMPORTED_MODULE_0__.showReccipes)();
       });
-    });
-  }
-
-  function displayNewRecipeForm() {
-    document.querySelector('#todo-app .new-recipe button').addEventListener('click', function () {
-      (0,_html__WEBPACK_IMPORTED_MODULE_0__.showNewRecipeForm)();
     });
   }
 

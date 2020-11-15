@@ -29,13 +29,7 @@ body {
 
 }
 
-
-
-
-
 button, select {
-
-
   padding: 0.5rem;
     font-family: inherit;
     font-weight: bold;
@@ -46,8 +40,6 @@ button, select {
     color: var(--clr-primary);
     border-radius: var(--radius);
     transition: background 200ms ease-in, color 200ms ease-in;
-
-
 }
 
 .status {
@@ -60,27 +52,14 @@ button, select {
 #todo-app .login.hidden {
   display: none;
 }
+.login {
+  text-align: center;
+}
 #todo-app .logged-in.hidden {
   display: none;
 }
-
-#todo-app .todo {
-  cursor: pointer;
-}
-
-#todo-app .complete {
-  color: gray;
-}
-
-#todo-app .todo.complete {
-  text-decoration: line-through;
-}
-
-#todo-app .delete {
-  margin-left: 10px;
-  font-weight: bold;
-
-  cursor: pointer;
+.logged-in {
+  text-align: center;
 }
 
 
@@ -144,8 +123,18 @@ button, select {
     width: 100%;
 
 }
+.new-recipe h2 {
+  text-align: center;
+}
+.new-recipe a {
+  color: gray;
+}
 .new-recipe.hidden {
   display: none;
+}
+label {
+  margin: 10;
+  display: block;
 }
 
 textarea {
@@ -268,23 +257,13 @@ input  {
   display: none;
 }
 article img {
-/*
-  height: 500px;
-
-
-
-  background-size: cover;
-  background-position: 10% 20%;
-
-  position: relative; */
   height: 27rem;
-
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    border-top-right-radius: 10px;
-    width: 100%;
-    object-fit: cover;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+  width: 100%;
+  object-fit: cover;
 }
 article h2 {
   text-align: center;

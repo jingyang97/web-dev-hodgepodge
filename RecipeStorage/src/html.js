@@ -4,6 +4,8 @@ export const showContent = function ()
   {
     document.querySelector('#todo-app .login').classList.add('hidden');
     document.querySelector('#todo-app .logged-in').classList.remove('hidden');
+    document.querySelector('#todo-app .new-recipe').classList.remove('hidden');
+
 
 
 };
@@ -12,6 +14,7 @@ export const showLogin = function ()
 {
     document.querySelector('#todo-app .login').classList.remove('hidden');
     document.querySelector('#todo-app .logged-in').classList.add('hidden');
+    document.querySelector('#todo-app .new-recipe').classList.add('hidden');
 
 };
 

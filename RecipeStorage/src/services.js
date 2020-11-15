@@ -99,4 +99,52 @@ export const getRecipeDetail = function (recipe_id) {
       return response.json().then(err => Promise.reject(err));
     });
 
-}
+  };
+
+export const onLoad = function () {
+    return fetch('/recipes/', {
+      method: 'GET',
+    })
+    .catch(() =>
+    {
+      return Promise.reject({ error: 'network-error' });
+    })
+    .then(response =>
+    {
+      if (response.ok)
+      {
+        return response.json();
+      }
+      return response.json().then(err => Promise.reject(err));
+    });
+  };
+
+  export const createNewRecipe = function (recipe) {
+    return fetch(`/recipes`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include',
+      redirect: 'follow',
+      body: JSON.stringify({
+        recipe
+      })
+    })
+    .catch(() =>
+    {
+      return Promise.reject({ error: 'network-error' });
+    })
+    .then(response =>
+    {
+      if (response.ok)
+      {
+        return response.json();
+      }
+      return response.json().then(err =>
+
+
+        Promise.reject(err));
+    });
+
+    };

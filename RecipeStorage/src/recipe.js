@@ -5,7 +5,9 @@ import
   {
     checkLoginStatus,
 
-    getRecipeDetail, getRecipes, performLogin,
+
+    createNewRecipe, getRecipeDetail, getRecipes,
+    onLoad, performLogin,
     performLogout
   } from './services';
 
@@ -25,20 +27,12 @@ import
   };
 
   const usernameInputEl = document.querySelector('#recipe-app .username-input');
-
   const loginButton = document.querySelector('#recipe-app .login button')
-
   const logoutButton = document.querySelector('#recipe-app .logout-button')
-
   const status = document.querySelector('.status');
-
   const addRecipeButton = document.querySelector('#recipe-app .addRecipe-btn');
-
   const recipeListEl = document.querySelector('main .recipe-list');
   const recipeDetailEl = document.querySelector('main .recipe-detail');
-
-
-
   const titleInputEl = document.getElementById('title');
   const imageInputEl = document.getElementById('image');
   const descriptionInputEl = document.getElementById('description');
@@ -107,15 +101,15 @@ import
   }
 
 
-  function convertError(response)
-  {
-    if (response.ok)
-    {
-      return response.json();
-    }
-    return response.json()
-      .then(err => Promise.reject(err));
-  }
+  // function convertError(response)
+  // {
+  //   if (response.ok)
+  //   {
+  //     return response.json();
+  //   }
+  //   return response.json()
+  //     .then(err => Promise.reject(err));
+  // }
 
 
   function addLogin()
@@ -147,6 +141,7 @@ import
 
     });
   }
+
   function addLogout()
   {
     logoutButton.addEventListener('click', () =>
@@ -267,25 +262,33 @@ import
       const description = descriptionInputEl.value;
       const ingredients = ingredientsInputEl.value;
       const instructions = instructionsInputEl.value;
+      const new_recipe = {
+        title: title,
+        image: image,
+        description: description,
+        ingredients: ingredients,
+        instructions: instructions
+      }
 
+      createNewRecipe(new_recipe)
 
-      fetch(`/recipes`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        credentials: 'include',
-        redirect: 'follow',
-        body: JSON.stringify({
-          title: title,
-          image: image,
-          description: description,
-          ingredients: ingredients,
-          instructions: instructions
-        })
-      })
-        .catch(() => Promise.reject({ error: 'network-error' }))
-        .then(convertError)
+      // fetch(`/recipes`, {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json'
+      //   },
+      //   credentials: 'include',
+      //   redirect: 'follow',
+      //   body: JSON.stringify({
+      //     title: title,
+      //     image: image,
+      //     description: description,
+      //     ingredients: ingredients,
+      //     instructions: instructions
+      //   })
+      // })
+      //   .catch(() => Promise.reject({ error: 'network-error' }))
+      //   .then(convertError)
         .then(recipes =>
         {
           titleInputEl.value = '';
@@ -306,21 +309,21 @@ import
 
 
 
-  fetch('/recipes/', {
-    method: 'GET',
-  })
-    .catch(() => Promise.reject({ error: 'network-error' }))
-    .then(convertError)
-    .then(recipes =>
-    {
 
-      showReccipes();
-      renderRecipes(recipes);
-      updateStatus('');
-    })
-    .catch(err =>
-    {
-      updateStatus(errMsgs[err.error] || err.error);
-    });
+  onLoad()
+  .then((recipes) =>
+      {
+        showReccipes();
+          renderRecipes(recipes);
+          updateStatus('');
+      })
+      .catch(err =>
+      {
+        updateStatus(errMsgs[err.error] || err.error);
+      });
+
+
+
+
 
 })();

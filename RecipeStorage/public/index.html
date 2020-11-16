@@ -14,11 +14,12 @@
       <div class="login hidden">
         <input class="username-input" type="text">
         <button type="button">Login</button>
-        <div class="status"></div>
+        <div class="status login-status"></div>
       </div>
       <div class="logged-in hidden">
         <button class="logout-button" type="button">Log out</button>
       </div>
+
 
       <main class="recipes">
         <ul class="recipe-list"></ul>
@@ -26,7 +27,8 @@
       </main>
 
       <div class="new-recipe">
-        <form>
+
+        <div class="status new-recipe-status"></div>
 
           <h2>New recipe</h2>
           <p class="title">
@@ -54,7 +56,7 @@
             placeholder="This will be displayed as ordered list. Swith new line to type the next step." required></textarea>
           </p>
           <button type="button" class="addRecipe-btn">Create New Recipe</button>
-        </form>
+
       </div>
 
     </div>

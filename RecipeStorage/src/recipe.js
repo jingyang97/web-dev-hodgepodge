@@ -24,12 +24,15 @@ import
   const errMsgs = {
     'duplicate': 'That name already exists',
     'network-error': 'There was a problem connecting to the network, try again',
+    'no-recipe': 'Recipe is undefined',
+    'empty-recipe': 'New recipe mush at least include Title, Ingredients, and Instructions'
   };
 
   const usernameInputEl = document.querySelector('#recipe-app .username-input');
   const loginButton = document.querySelector('#recipe-app .login button')
   const logoutButton = document.querySelector('#recipe-app .logout-button')
-  const status = document.querySelector('.status');
+  const loginStatus = document.querySelector('.login-status');
+  const newRecipeStatus = document.querySelector('.new-recipe-status');
   const addRecipeButton = document.querySelector('#recipe-app .addRecipe-btn');
   const recipeListEl = document.querySelector('main .recipe-list');
   const recipeDetailEl = document.querySelector('main .recipe-detail');
@@ -76,14 +79,14 @@ import
         getRecipes()
           .catch((err) =>
           {
-            updateStatus(errMsgs[err.error] || err.error);
+            updateStatus(errMsgs[err.error] || err.error, '');
           })
           .then(recipes =>
           {
             appState.error = '';
             appState.recipes = recipes;
             renderRecipes(recipes);
-            updateStatus('');
+            updateStatus('', '');
           });
       }, 3000);
     }
@@ -95,9 +98,10 @@ import
     }
   }
 
-  function updateStatus(message)
+  function updateStatus(loginMsg, newRecipeMsg)
   {
-    status.innerText = message;
+    loginStatus.innerText = loginMsg;
+    newRecipeStatus.innerText = newRecipeMsg;
   }
 
 
@@ -134,7 +138,7 @@ import
         .catch(err =>
         {
 
-          updateStatus(err[0]);
+          updateStatus(err[0], '');
           showLogin();
           showReccipes();
         });
@@ -154,7 +158,7 @@ import
         })
         .catch(err =>
         {
-          updateStatus(errMsgs[err.error] || err.error);
+          updateStatus(errMsgs[err.error] || err.error, '');
           showContent();
           showReccipes();
         });
@@ -253,11 +257,11 @@ import
       {
         showRecipeDetail();
         renderRecipeDetail(recipe);
-        updateStatus('');
+        updateStatus('', '');
       })
       .catch(err =>
       {
-        updateStatus(errMsgs[err.error] || err.error);
+        updateStatus(errMsgs[err.error] || err.error, '');
       });
     });
   }
@@ -308,11 +312,11 @@ import
           instructionsInputEl.value = '';
           renderRecipes(recipes);
 
-          updateStatus('');
+          updateStatus('', '');
         })
         .catch(err =>
         {
-          updateStatus(errMsgs[err.error] || err.error);
+          updateStatus('', errMsgs[err.error] || err.error);
         });
     });
   }
@@ -325,11 +329,11 @@ import
       {
         showReccipes();
           renderRecipes(recipes);
-          updateStatus('');
+          updateStatus('', '');
       })
       .catch(err =>
       {
-        updateStatus(errMsgs[err.error] || err.error);
+        updateStatus(errMsgs[err.error] || err.error, '');
       });
 
 

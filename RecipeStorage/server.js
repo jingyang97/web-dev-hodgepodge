@@ -66,6 +66,21 @@ app.get('/recipes', (req, res) =>
 app.post('/recipes', express.json(), (req, res) =>
 {
   const recipe = req.body;
+
+  // no recipe
+  if (!recipe)
+  {
+    res.status(400).json({ error: 'no-recipe' });
+    return;
+  }
+
+  // empty required fields
+  if (!recipe.title || !recipe.ingredients || !recipe.instructions)
+  {
+    res.status(400).json({ error: 'empty-recipe' });
+    return;
+  }
+
   const sid = req.cookies.sid;
   const author = session.sessions[sid];
   const id = uuid();
@@ -88,8 +103,8 @@ app.get('/recipes/:recipe_id', express.json(), (req, res) =>
 {
   const recipe_id = req.params.recipe_id;
 
-  const sid = req.cookies.sid;
-  if (!recipe_id)
+
+  if (!recipe_id || !recipe_id in session.recipes_ls)
   {
     res.status(400).json({ error: 'missing-recipe_id' });
     return;

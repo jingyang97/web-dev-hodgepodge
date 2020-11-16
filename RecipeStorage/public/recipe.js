@@ -71,12 +71,15 @@ __webpack_require__.r(__webpack_exports__);
   };
   var errMsgs = {
     'duplicate': 'That name already exists',
-    'network-error': 'There was a problem connecting to the network, try again'
+    'network-error': 'There was a problem connecting to the network, try again',
+    'no-recipe': 'Recipe is undefined',
+    'empty-recipe': 'New recipe mush at least include Title, Ingredients, and Instructions'
   };
   var usernameInputEl = document.querySelector('#recipe-app .username-input');
   var loginButton = document.querySelector('#recipe-app .login button');
   var logoutButton = document.querySelector('#recipe-app .logout-button');
-  var status = document.querySelector('.status');
+  var loginStatus = document.querySelector('.login-status');
+  var newRecipeStatus = document.querySelector('.new-recipe-status');
   var addRecipeButton = document.querySelector('#recipe-app .addRecipe-btn');
   var recipeListEl = document.querySelector('main .recipe-list');
   var recipeDetailEl = document.querySelector('main .recipe-detail');
@@ -106,12 +109,12 @@ __webpack_require__.r(__webpack_exports__);
     if (shouldPoll && !appState.pollId) {
       appState.pollId = setInterval(function () {
         (0,_services__WEBPACK_IMPORTED_MODULE_1__.getRecipes)()["catch"](function (err) {
-          updateStatus(errMsgs[err.error] || err.error);
+          updateStatus(errMsgs[err.error] || err.error, '');
         }).then(function (recipes) {
           appState.error = '';
           appState.recipes = recipes;
           renderRecipes(recipes);
-          updateStatus('');
+          updateStatus('', '');
         });
       }, 3000);
     } // For when a user logs out:
@@ -123,8 +126,9 @@ __webpack_require__.r(__webpack_exports__);
     }
   }
 
-  function updateStatus(message) {
-    status.innerText = message;
+  function updateStatus(loginMsg, newRecipeMsg) {
+    loginStatus.innerText = loginMsg;
+    newRecipeStatus.innerText = newRecipeMsg;
   } // function convertError(response)
   // {
   //   if (response.ok)
@@ -148,7 +152,7 @@ __webpack_require__.r(__webpack_exports__);
         (0,_html__WEBPACK_IMPORTED_MODULE_0__.showReccipes)();
         renderRecipes(userInfo);
       })["catch"](function (err) {
-        updateStatus(err[0]);
+        updateStatus(err[0], '');
         (0,_html__WEBPACK_IMPORTED_MODULE_0__.showLogin)();
         (0,_html__WEBPACK_IMPORTED_MODULE_0__.showReccipes)();
       });
@@ -160,7 +164,7 @@ __webpack_require__.r(__webpack_exports__);
       (0,_services__WEBPACK_IMPORTED_MODULE_1__.performLogout)().then(function (userInfo) {
         (0,_html__WEBPACK_IMPORTED_MODULE_0__.showLogin)();
       })["catch"](function (err) {
-        updateStatus(errMsgs[err.error] || err.error);
+        updateStatus(errMsgs[err.error] || err.error, '');
         (0,_html__WEBPACK_IMPORTED_MODULE_0__.showContent)();
         (0,_html__WEBPACK_IMPORTED_MODULE_0__.showReccipes)();
       });
@@ -218,9 +222,9 @@ __webpack_require__.r(__webpack_exports__);
       (0,_services__WEBPACK_IMPORTED_MODULE_1__.getRecipeDetail)(recipe_id).then(function (recipe) {
         (0,_html__WEBPACK_IMPORTED_MODULE_0__.showRecipeDetail)();
         renderRecipeDetail(recipe);
-        updateStatus('');
+        updateStatus('', '');
       })["catch"](function (err) {
-        updateStatus(errMsgs[err.error] || err.error);
+        updateStatus(errMsgs[err.error] || err.error, '');
       });
     });
   }
@@ -263,9 +267,9 @@ __webpack_require__.r(__webpack_exports__);
         ingredientsInputEl.value = '';
         instructionsInputEl.value = '';
         renderRecipes(recipes);
-        updateStatus('');
+        updateStatus('', '');
       })["catch"](function (err) {
-        updateStatus(errMsgs[err.error] || err.error);
+        updateStatus('', errMsgs[err.error] || err.error);
       });
     });
   }
@@ -273,9 +277,9 @@ __webpack_require__.r(__webpack_exports__);
   (0,_services__WEBPACK_IMPORTED_MODULE_1__.onLoad)().then(function (recipes) {
     (0,_html__WEBPACK_IMPORTED_MODULE_0__.showReccipes)();
     renderRecipes(recipes);
-    updateStatus('');
+    updateStatus('', '');
   })["catch"](function (err) {
-    updateStatus(errMsgs[err.error] || err.error);
+    updateStatus(errMsgs[err.error] || err.error, '');
   });
 })();
 

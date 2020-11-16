@@ -4,8 +4,6 @@ import { showContent, showLogin, showReccipes, showRecipeDetail } from './html';
 import
   {
     checkLoginStatus,
-
-
     createNewRecipe, getRecipeDetail, getRecipes,
     onLoad, performLogin,
     performLogout
@@ -105,17 +103,6 @@ import
   }
 
 
-  // function convertError(response)
-  // {
-  //   if (response.ok)
-  //   {
-  //     return response.json();
-  //   }
-  //   return response.json()
-  //     .then(err => Promise.reject(err));
-  // }
-
-
   function addLogin()
   {
     document.querySelector('#recipe-app .login button').addEventListener('click', () =>
@@ -184,14 +171,10 @@ import
         </li>`;
     }
     recipeListEl.innerHTML = html;
-    // addRecipeButton.disabled = !taskInputEl.value;
   }
 
   function strArrayProcessor(plainText) {
     const strArray = plainText.split("\n");
-
-
-
     const processedArray = strArray.map((s) =>
     {
       return `
@@ -200,7 +183,6 @@ import
       </li>`;
     }).join("");
     return processedArray;
-
   }
 
   function renderRecipeDetail(recipe)
@@ -285,24 +267,6 @@ import
       }
 
       createNewRecipe(new_recipe)
-
-      // fetch(`/recipes`, {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json'
-      //   },
-      //   credentials: 'include',
-      //   redirect: 'follow',
-      //   body: JSON.stringify({
-      //     title: title,
-      //     image: image,
-      //     description: description,
-      //     ingredients: ingredients,
-      //     instructions: instructions
-      //   })
-      // })
-      //   .catch(() => Promise.reject({ error: 'network-error' }))
-      //   .then(convertError)
         .then(recipes =>
         {
           titleInputEl.value = '';
@@ -335,9 +299,5 @@ import
       {
         updateStatus(errMsgs[err.error] || err.error, '');
       });
-
-
-
-
 
 })();

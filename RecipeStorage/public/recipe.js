@@ -129,16 +129,7 @@ __webpack_require__.r(__webpack_exports__);
   function updateStatus(loginMsg, newRecipeMsg) {
     loginStatus.innerText = loginMsg;
     newRecipeStatus.innerText = newRecipeMsg;
-  } // function convertError(response)
-  // {
-  //   if (response.ok)
-  //   {
-  //     return response.json();
-  //   }
-  //   return response.json()
-  //     .then(err => Promise.reject(err));
-  // }
-
+  }
 
   function addLogin() {
     document.querySelector('#recipe-app .login button').addEventListener('click', function () {
@@ -179,7 +170,7 @@ __webpack_require__.r(__webpack_exports__);
       html += "\n        <li class=\"card\">\n          <div class=\"card__body\">\n            <img src=\"".concat(recipe.image, "\" alt=\"image for ").concat(recipe.title, "\" class=\"card__image\">\n            <h2 class=\"card__title\">").concat(recipe.title, "</h2>\n            <p class=\"card__description\">By ").concat(recipe.author, "</p>\n          </div>\n          <button class=\"card__btn\" id=\"").concat(recipe_id, "\">View Recipe</button>\n        </li>");
     }
 
-    recipeListEl.innerHTML = html; // addRecipeButton.disabled = !taskInputEl.value;
+    recipeListEl.innerHTML = html;
   }
 
   function strArrayProcessor(plainText) {
@@ -243,24 +234,7 @@ __webpack_require__.r(__webpack_exports__);
         ingredients: ingredients,
         instructions: instructions
       };
-      (0,_services__WEBPACK_IMPORTED_MODULE_1__.createNewRecipe)(new_recipe) // fetch(`/recipes`, {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json'
-      //   },
-      //   credentials: 'include',
-      //   redirect: 'follow',
-      //   body: JSON.stringify({
-      //     title: title,
-      //     image: image,
-      //     description: description,
-      //     ingredients: ingredients,
-      //     instructions: instructions
-      //   })
-      // })
-      //   .catch(() => Promise.reject({ error: 'network-error' }))
-      //   .then(convertError)
-      .then(function (recipes) {
+      (0,_services__WEBPACK_IMPORTED_MODULE_1__.createNewRecipe)(new_recipe).then(function (recipes) {
         titleInputEl.value = '';
         imageInputEl.value = '';
         descriptionInputEl.value = '';

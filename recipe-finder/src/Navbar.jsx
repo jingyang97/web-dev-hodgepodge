@@ -1,6 +1,6 @@
-import React, {useContext} from 'react';
-import {StateContext} from './App';
-function Navbar(){
+import React, { useContext } from 'react';
+import { StateContext } from './App';
+function Navbar({onLogout}){
     const context = useContext(StateContext);
     const handleClickHome = () => {
         context.Dispatch({type: 'SELECT_POST', payload:''});
@@ -36,6 +36,7 @@ function Navbar(){
                 <li><button onClick = {handleClickCommit} className = 'nav-anchorTag'>Commit</button></li>
                 <li><button onClick = {handleClickCategory}className = 'nav-anchorTag'>Category</button></li>
                 <li><button onClick = {handleClickAbout} className = 'nav-anchorTag'>About</button></li>
+                <li><button onClick = {onLogout} className = 'nav-anchorTag'>Logout</button></li>
             </ul>
         </div>
     )

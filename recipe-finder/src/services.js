@@ -30,6 +30,21 @@ export const fetchLogin = (username, password) => {
     });
 };
 
+export const performLogout = () => {
+    return fetch('/session/', {
+        method: 'DELETE',
+    })
+    .catch(() => {
+        return Promise.reject({code:'network-error'});
+    })
+    .then((response) => {
+        if(!response.ok){
+            return response.json().then(result => Promise.reject(result));
+        }
+        return response.json();
+    });
+}
+
 export const fetchRegister = (username, password)=>{
     return fetch('/session', {
       method:'POST',
@@ -73,7 +88,7 @@ export const fetchUserPosts = (username)=>{
     })
     .then((response)=>{
         if(!response.ok){
-            return response.json().then(result=>Promise.reject(result)); 
+            return response.json().then(result=>Promise.reject(result));
         }
         return response.json();
     });

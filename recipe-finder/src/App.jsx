@@ -1,15 +1,15 @@
-import React, {useEffect, useReducer} from 'react';
+import React, { useEffect, useReducer } from 'react';
+import About from './About';
 import './App.css';
-import * as services from './services';
-import LoginPane from './LoginPane';
-import Posts from './Posts';
+import Category from './Category';
+import Commit from './Commit';
 import Error from './Error';
-import SignupPane from './SignupPane';
+import LoginPane from './LoginPane';
 import Navbar from './Navbar';
 import PostDetail from './PostDetail';
-import Commit from './Commit';
-import About from './About';
-import Category from './Category';
+import Posts from './Posts';
+import * as services from './services';
+import SignupPane from './SignupPane';
 
 export const StateContext = React.createContext();
 
@@ -52,6 +52,10 @@ const reducer = (state, action) => {
       return {...state, showCategory: action.payload}
     case 'SET_CATEGORY':
       return {...state, categories: action.payload}
+    case 'LOGOUT_SUCCESS':
+      return {...state, isLoggedIn: false,showCommit: false,
+        showAbout: false,
+        showCategory: false}
     default:
       return state;
   }
@@ -74,6 +78,17 @@ const callLogin = (username, password) => {
   services.fetchLogin(username, password)
   .then((response) => {
     dispatch({type: 'LOGIN_SUCCESS', payload: username});
+    fetchAllPosts();
+  })
+  .catch((e) => {
+    dispatch({type: 'ERR_FOUND', payload: e.message});
+  })
+}
+
+const callLogout = () => {
+  services.performLogout()
+  .then((response) => {
+    dispatch({type: 'LOGOUT_SUCCESS', payload: response.data});
     fetchAllPosts();
   })
   .catch((e) => {
@@ -160,7 +175,7 @@ const addComment = (userId, postId, commentorName, comment) => {
     <div className="App">
       <div className = "Content">
         {state.error? <Error err = {state.error}/> : ''}
-        {state.isLoggedIn? <Navbar/> : ''}
+        {state.isLoggedIn? <Navbar onLogout={callLogout}/> : ''}
         {state.showSignup? <SignupPane/> : state.isLoggedIn? '' : <LoginPane dispatch = {dispatch}/>}
         {state.isLoggedIn? state.showCategory? <Category/> : state.showAbout? <About/> : state.showCommit? <Commit/> : state.selectedPost? <PostDetail/> : <Posts postsToDisplay = {state.posts}/> : ''}
         <div className = 'footer-container'>

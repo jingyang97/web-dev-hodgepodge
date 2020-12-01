@@ -58,6 +58,13 @@ app.post('/session', (req, res) => {
     web(res)({data: sessionInfo});
 });
 
+app.delete('/session', (req, res) => {
+    const sid = req.cookies.sid;
+    session.remove(sid);
+    res.clearCookie('sid');
+    res.json({ sid, status: 'removed' });
+});
+
 //posts
 app.get('/posts', (req, res) => {
     web(res)({data: posts.readFromAllUsers()});
@@ -125,14 +132,14 @@ app.post('/posts/:username', (req, res) => {
       web(res)({status: 401, message: 'no valid session' });
       return;
     }
-  
+
     const username = req.params.username;
     const isAllowed = session.canReadUser({ sid, username });
     if(!isAllowed) {
       web(res)({status: 403, message: 'action not permitted' });
       return;
     }
-  
+
     const post = req.body.post;
     web(res)({ data: posts.addPost(sid, post)});
 });
@@ -175,14 +182,14 @@ app.delete('/posts/:username/:postId', (req, res) => {
       web(res)({status: 401, message: 'no valid session' });
       return;
     }
-  
+
     const username = req.params.username;
     const isAllowed = session.canReadUser({ sid, username });
     if(!isAllowed) {
       web(res)({status: 403, message: 'action not permitted' });
       return;
     }
-  
+
     const postId = req.params.postId;
     const post = posts.removeTask({ username, postId });
     if(!post) {

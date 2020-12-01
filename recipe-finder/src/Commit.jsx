@@ -1,5 +1,5 @@
-import React, {useContext, useState} from 'react';
-import {StateContext} from './App';
+import React, { useContext, useState } from 'react';
+import { StateContext } from './App';
 function Commit(){
     const context = useContext(StateContext);
     const [post, setPost] = useState({username: context.state.userName});
@@ -22,7 +22,7 @@ function Commit(){
         <div className = 'commit-box'>
             <label>Title</label><input onChange = {handleTitle}></input><br/>
             <label>Category</label><input onChange = {handleCategory}></input><br/>
-            <label>Img url(if any)</label><input onInput = {handleImg}></input><br/>
+            <label>Img url(Optional)</label><input onInput = {handleImg}></input><br/>
             <label>Content:</label><br/>
             <textarea onChange = {handleContent} rows = '30' cols = '100'></textarea><br/>
             <button onClick = {handleClick}>submit</button><br/>

@@ -131,14 +131,15 @@ ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: black;
+
 }
-li {
+/* li {
   float: left;
-}
+} */
 .navbar{
   color: white;
   font-size: 16px;
+  background-color: gray;
 }
 
 .anchorTag:hover{
@@ -184,5 +185,77 @@ li {
 
 .post-detail{
   margin: auto;
-  width: 500px;
+  width: 90%;
+}
+.recipe-detail {
+  color: black;
+  padding-bottom: 10%;
+  padding-left: 10%;
+  padding-top: 3%;
+  padding-right: 10%;
+}
+
+.recipe-detail.hidden {
+  display: none;
+}
+
+article img {
+  height: 27rem;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+  width: 100%;
+  object-fit: cover;
+}
+
+article h2 {
+  text-align: center;
+}
+
+article h3 {
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+article .author {
+  text-align: center;
+  font-weight: bold;
+}
+
+article .description {
+  padding: 5%;
+  text-align: center;
+  font-family: Apple Chancery;
+  text-align: left;
+  margin-top: 10px;
+}
+
+article .ingredients {
+  text-align: left;
+  margin: 10px;
+  padding: 5%;
+  list-style-type: none;
+}
+
+article ol li {
+  margin: 5px;
+}
+
+
+
+article .instructions {
+  padding: 5%;
+  list-style-type: none;
+  text-align: left;
+  margin: 10px;
+}
+
+
+.comment-box {
+  display: block;
+}
+
+svg {
+  margin-right: 7px;
 }

@@ -178,11 +178,7 @@ const addComment = (userId, postId, commentorName, comment) => {
         {state.isLoggedIn? <Navbar onLogout={callLogout}/> : ''}
         {state.showSignup? <SignupPane/> : state.isLoggedIn? '' : <LoginPane dispatch = {dispatch}/>}
         {state.isLoggedIn? state.showCategory? <Category/> : state.showAbout? <About/> : state.showCommit? <Commit/> : state.selectedPost? <PostDetail/> : <Posts postsToDisplay = {state.posts}/> : ''}
-        <div className = 'footer-container'>
-        <footer className = 'footer'>
-          ©2020 Copyright: Shiyu Feng
-         </footer>
-        </div>
+
       </div>
     </div>
     </StateContext.Provider>

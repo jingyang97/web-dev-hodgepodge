@@ -1,0 +1,95 @@
+
+
+.my-recipe-card {
+	background: #fff;
+	margin: 4em auto;
+	width: 90%;
+    max-width: 496px;
+    height: auto;
+    font-size: 1rem;
+    font-family: 'Open Sans', sans-serif;
+
+}
+
+.my-recipe-card aside {
+    position: relative;
+}
+
+.my-recipe-card aside img {
+    max-width: 100%;
+	height: auto;
+    vertical-align: bottom;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+}
+
+
+.my-recipe-card	article {
+        padding: 1.25em 1.5em;
+}
+
+.my-recipe-card	article ul{
+    list-style: none;
+    margin: 0.5em 0 0;
+    padding: 0;
+}
+
+.my-recipe-card	article {
+
+}
+
+
+
+.my-recipe-card	article	h2, h3 {
+			margin: 0;
+			font-weight: 300;
+		}
+
+        .my-recipe-card	article	h2 {
+			font-size: em(28);
+			color: #222222;
+		}
+
+        .my-recipe-card	article	h3 {
+			font-size: em(15);
+			color: #838689;
+		}
+
+        .my-recipe-card	article	p {
+			margin: 1.25em 0;
+			font-size: em(13);
+			font-weight: 400;
+			color: #222222;
+        }
+
+		.my-recipe-card	article p	span {
+				font-weight: 700;
+				color: #000000;
+			}
+
+            .my-recipe-card	article	.ingredients {
+			margin: 2em 0 0.5em;
+		}
+
+
+	.icon {
+	    display: inline;
+	    display: inline-block;
+	    background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/203277/recipe-card-icons.svg);
+	    background-repeat: no-repeat;
+	}
+
+
+
+
+
+
+
+
+
+	.icon-users,.icon-users\:regular {
+	    background-position: 0 -84px;
+	    width: 18px;
+	    height: 18px;
+	}

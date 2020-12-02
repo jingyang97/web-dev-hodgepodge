@@ -1,10 +1,10 @@
 import React, { useEffect, useReducer } from 'react';
-import About from './About';
 import './App.css';
 import Category from './Category';
 import Commit from './Commit';
 import Error from './Error';
 import LoginPane from './LoginPane';
+import MyRecipes from './MyRecipes';
 import Navbar from './Navbar';
 import PostDetail from './PostDetail';
 import Posts from './Posts';
@@ -177,7 +177,7 @@ const addComment = (userId, postId, commentorName, comment) => {
         {state.error? <Error err = {state.error}/> : ''}
         {state.isLoggedIn? <Navbar onLogout={callLogout}/> : ''}
         {state.showSignup? <SignupPane/> : state.isLoggedIn? '' : <LoginPane dispatch = {dispatch}/>}
-        {state.isLoggedIn? state.showCategory? <Category/> : state.showAbout? <About/> : state.showCommit? <Commit/> : state.selectedPost? <PostDetail/> : <Posts postsToDisplay = {state.posts}/> : ''}
+        {state.isLoggedIn? state.showCategory? <Category/> : state.showAbout? <MyRecipes postsToDisplay={state.posts} username={state.userName}/> : state.showCommit? <Commit/> : state.selectedPost? <PostDetail/> : <Posts postsToDisplay = {state.posts}/> : ''}
 
       </div>
     </div>

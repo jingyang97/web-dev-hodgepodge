@@ -33,9 +33,9 @@ function Navbar({onLogout}){
             <ul>
                 <li><p>Welcome, {context.state.userName}!</p></li>
                 <li><button onClick = {handleClickHome} className = 'nav-anchorTag'>Home</button></li>
-                <li><button onClick = {handleClickCommit} className = 'nav-anchorTag'>Commit</button></li>
                 <li><button onClick = {handleClickCategory}className = 'nav-anchorTag'>Category</button></li>
-                <li><button onClick = {handleClickAbout} className = 'nav-anchorTag'>About</button></li>
+                <li><button onClick = {handleClickAbout} className = 'nav-anchorTag'>My Recipes</button></li>
+                <li><button onClick = {handleClickCommit} className = 'nav-anchorTag'>Commit</button></li>
                 <li><button onClick = {onLogout} className = 'nav-anchorTag'>Logout</button></li>
             </ul>
         </div>

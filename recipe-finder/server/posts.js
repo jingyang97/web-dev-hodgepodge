@@ -34,95 +34,63 @@ const posts = {
         },
         '125523fg':
         {
-            'title': 'Cookies & Cream Pie (Oreo)',
-            'category': 'Desserts',
-            'username': 'Admin',
-            'userId': '123',
-            'postId': '125523fg',
-            'timeStamp': getFormatedDate(),
-            'comments': [],
-            'img': 'https://cdn.sallysbakingaddiction.com/wp-content/uploads/2020/10/cookies-and-cream-pie-600x900.jpg',
-            'description': 'This cookies & cream pie features a crunchy Oreo cookie crust and gloriously creamy filling that sets up in the refrigerator. Easy enough for any beginner baker to handle!',
-            'ingredients': `1 cup (240ml) cold heavy cream or heavy whipping cream
-            one 8-ounce block (225g) full-fat cream cheese, softened to room temperature
-            3/4 cup (90g) confectioners’ sugar
-            1 teaspoon pure vanilla extract
-            12 whole Oreos (Double Stuf or regular), chopped
-            optional for topping: homemade whipped cream`,
-            'instructions': `Preheat to 350°F (177°C).
-            Make the crust: In a food processor or blender, pulse the whole Oreos (cream filling and cookie) into a fine crumb. You should have about 2 cups. Stir the Oreo crumbs and melted butter together. Press tightly into the bottom and up the sides of a 9-inch pie dish. Bake for 10 minutes. Allow to cool as you prepare the filling.
-            Make the filling: Using a hand mixer or a stand mixer fitted with a whisk attachment, whip the cold heavy cream into stiff peaks on medium-high speed, about 4 minutes. Set aside. Using a hand mixer or a stand mixer fitted with a whisk or paddle attachment, beat the cream cheese on medium speed until perfectly smooth and creamy. Scrape down the sides and up the bottom of the bowl with a rubber spatula as needed. Add the confectioners’ sugar and vanilla extract and beat on medium-high speed until combined. Make sure there are no large lumps of cream cheese. If there are lumps, keep beating until smooth.
-            Using your mixer on low speed or a rubber spatula, fold the whipped cream and chopped Oreos into the cream cheese mixture until combined. This takes several turns of your rubber spatula. Combine slowly as you don’t want to deflate all the air in the whipped cream.
-            Spread filling into cooled crust. Use an offset spatula to smooth down the top.
-            Cover tightly with plastic wrap or aluminum foil and refrigerate for at least 6 hours and up to 2 days. The longer refrigerated, the better the pie will set up. You could also freeze the pie for at least 4 hours and up to 3 months. The crust is a little difficult to eat frozen, though.
-            Feel free to garnish the pie with whipped cream. I used Ateco 849 piping tip for the whipped cream in the pictured pie. Using a clean sharp knife, cut into slices for serving. For neat slices, wipe the knife clean between each slice.
-            Cover and store leftover pie in the refrigerator or freezer for up to 5 days.`,
-            'content': ''
+            title: 'Cookies & Cream Pie (Oreo)',
+            category: 'Desserts',
+            username: 'Admin',
+            userId: '123',
+            postId: '125523fg',
+            timeStamp: getFormatedDate(),
+            comments: [],
+            img: 'https://cdn.sallysbakingaddiction.com/wp-content/uploads/2020/10/cookies-and-cream-pie-600x900.jpg',
+            description: 'This cookies & cream pie features a crunchy Oreo cookie crust and gloriously creamy filling that sets up in the refrigerator. Easy enough for any beginner baker to handle!',
+            ingredients: `1 cup (240ml) cold heavy cream or heavy whipping cream\none 8-ounce block (225g) full-fat cream cheese, softened to room temperature\n3/4 cup (90g) confectioners’ sugar\n1 teaspoon pure vanilla extract\n12 whole Oreos (Double Stuf or regular), chopped\noptional for topping: homemade whipped cream`,
+            instructions: `Preheat to 350°F (177°C).\nMake the crust: In a food processor or blender, pulse the whole Oreos (cream filling and cookie) into a fine crumb. You should have about 2 cups. Stir the Oreo crumbs and melted butter together. Press tightly into the bottom and up the sides of a 9-inch pie dish. Bake for 10 minutes. Allow to cool as you prepare the filling.\nMake the filling: Using a hand mixer or a stand mixer fitted with a whisk attachment, whip the cold heavy cream into stiff peaks on medium-high speed, about 4 minutes. Set aside. Using a hand mixer or a stand mixer fitted with a whisk or paddle attachment, beat the cream cheese on medium speed until perfectly smooth and creamy. Scrape down the sides and up the bottom of the bowl with a rubber spatula as needed. Add the confectioners’ sugar and vanilla extract and beat on medium-high speed until combined. Make sure there are no large lumps of cream cheese. If there are lumps, keep beating until smooth.\nUsing your mixer on low speed or a rubber spatula, fold the whipped cream and chopped Oreos into the cream cheese mixture until combined. This takes several turns of your rubber spatula. Combine slowly as you don’t want to deflate all the air in the whipped cream.\nSpread filling into cooled crust. Use an offset spatula to smooth down the top.\nCover tightly with plastic wrap or aluminum foil and refrigerate for at least 6 hours and up to 2 days. The longer refrigerated, the better the pie will set up. You could also freeze the pie for at least 4 hours and up to 3 months. The crust is a little difficult to eat frozen, though.\nFeel free to garnish the pie with whipped cream. I used Ateco 849 piping tip for the whipped cream in the pictured pie. Using a clean sharp knife, cut into slices for serving. For neat slices, wipe the knife clean between each slice.\nCover and store leftover pie in the refrigerator or freezer for up to 5 days.`,
+            content: ''
         },
         '21412421':
         {
-            'title': 'How To Make The Best Homemade Pizza',
-            'category': 'Fast Food',
-            'username': 'Admin',
-            'userId': '123',
-            'postId': '21412421',
-            'timeStamp': getFormatedDate(),
-            'comments': [{'author': 'Admin', 'date': getFormatedDate(), 'content':'This is my favorite!'}],
-            'img': 'https://www.skinnytaste.com/wp-content/uploads/2020/05/Margherita-Pizza-1-3.jpg',
-            'description': 'Classic homemade pizza recipe, including pizza dough and toppings, step-by-step instructions with photos. Make perfect pizza at home!',
-            'ingredients': `2 cups warm water
-            1 teaspoon sugar
-            2 teaspoons active dry yeast
-            7 cups all-purpose flour, plus more for dusting
-            6 tablespoons extra virgin olive oil, plus more for greasing
-            2 teaspoons kosher salt
-            a half cup of semolina flour`,
-            'instructions': `“Bloom” the yeast by sprinkling the sugar and yeast in the warm water. Let sit for 10 minutes, until bubbles form on the surface.
-            In a large bowl, combine the flour and salt. Make a well in the middle and add the olive oil and bloomed yeast mixture. Using a spoon, mix until a shaggy dough begins to form.
-            Once the flour is mostly hydrated, turn the dough out onto a clean work surface and knead for 10-15 minutes. The dough should be soft, smooth, and bouncy. Form the dough into a taut round.
-            Grease a clean, large bowl with olive oil and place the dough inside, turning to coat with the oil. Cover with plastic wrap. Let rise for at least an hour, or up to 24 hours.
-            Punch down the dough and turn it out onto a lightly floured work surface. Knead for another minute or so, then cut into 4 equal portions and shape into rounds.
-            Lightly flour the dough, then cover with a kitchen towel and let rest for another 30 minutes to an hour while you prepare the sauce and any other ingredients.
-            Preheat the oven as high as your oven will allow, between 450-500˚F (230-260˚C). Place a pizza stone, heavy baking sheet (turn upside down so the surface is flat), or cast iron skillet in the oven.
-            Meanwhile, make the tomato sauce: Add the salt to the can of tomatoes and puree with an immersion blender, or transfer to a blender or food processor, and puree until smooth.
-            Once the dough has rested, take a portion and start by poking the surface with your fingertips, until bubbles form and do not deflate.
-            Then, stretch and press the dough into a thin round. Make it thinner than you think it should be, as it will slightly shrink and puff up during baking.
-            Sprinkle semolina onto an upside down baking sheet and place the stretched crust onto it. Add the sauce and ingredients of your choice.
-            Slide the pizza onto the preheated pizza stone or pan. Bake for 15 minutes, or until the crust and cheese are golden brown.
-            Add any garnish of your preference.
-            Nutrition Calories: 1691 Fat: 65 grams Carbs: 211 grams Fiber: 12 grams Sugars: 60 grams Protein: 65 grams
-            Enjoy!`,
-            'content': ''
+            title: 'How To Make The Best Homemade Pizza',
+            category: 'Fast Food',
+            username: 'Admin',
+            userId: '123',
+            postId: '21412421',
+            timeStamp: getFormatedDate(),
+            comments: [{'author': 'Admin', 'date': getFormatedDate(), 'content':'This is my favorite!'}],
+            img: 'https://www.skinnytaste.com/wp-content/uploads/2020/05/Margherita-Pizza-1-3.jpg',
+            description: 'Classic homemade pizza recipe, including pizza dough and toppings, step-by-step instructions with photos. Make perfect pizza at home!',
+            ingredients: `2 cups warm water\n1 teaspoon sugar\n2 teaspoons active dry yeast\n7 cups all-purpose flour, plus more for dusting\n6 tablespoons extra virgin olive oil, plus more for greasing\n2 teaspoons kosher salt\na half cup of semolina flour`,
+            instructions: `“Bloom” the yeast by sprinkling the sugar and yeast in the warm water. Let sit for 10 minutes, until bubbles form on the surface.\nIn a large bowl, combine the flour and salt. Make a well in the middle and add the olive oil and bloomed yeast mixture. Using a spoon, mix until a shaggy dough begins to form.\nOnce the flour is mostly hydrated, turn the dough out onto a clean work surface and knead for 10-15 minutes. The dough should be soft, smooth, and bouncy. Form the dough into a taut round.\nGrease a clean, large bowl with olive oil and place the dough inside, turning to coat with the oil. Cover with plastic wrap. Let rise for at least an hour, or up to 24 hours.\nPunch down the dough and turn it out onto a lightly floured work surface. Knead for another minute or so, then cut into 4 equal portions and shape into rounds.\nLightly flour the dough, then cover with a kitchen towel and let rest for another 30 minutes to an hour while you prepare the sauce and any other ingredients.\nPreheat the oven as high as your oven will allow, between 450-500˚F (230-260˚C). Place a pizza stone, heavy baking sheet (turn upside down so the surface is flat), or cast iron skillet in the oven.\nMeanwhile, make the tomato sauce: Add the salt to the can of tomatoes and puree with an immersion blender, or transfer to a blender or food processor, and puree until smooth.\nOnce the dough has rested, take a portion and start by poking the surface with your fingertips, until bubbles form and do not deflate.\nThen, stretch and press the dough into a thin round. Make it thinner than you think it should be, as it will slightly shrink and puff up during baking.\nSprinkle semolina onto an upside down baking sheet and place the stretched crust onto it. Add the sauce and ingredients of your choice.\nSlide the pizza onto the preheated pizza stone or pan. Bake for 15 minutes, or until the crust and cheese are golden brown.\nAdd any garnish of your preference.\nNutrition Calories: 1691 Fat: 65 grams Carbs: 211 grams Fiber: 12 grams Sugars: 60 grams Protein: 65 grams\nEnjoy!`,
+            content: ''
         },
         'djk2190':
         {
-            'title': 'Mexican Street Tacos',
-            'category': 'Mexican',
-            'username': 'Admin',
-            'userId': '123',
-            'postId': 'djk2190',
-            'timeStamp': getFormatedDate(),
-            'comments': [],
-            'img': 'https://s23209.pcdn.co/wp-content/uploads/2019/04/Mexican-Street-TacosIMG_9091.jpg',
-            'description': 'Easy, quick, authentic carne asada street tacos you can now make right at home! Top with onion, cilantro + fresh lime juice! SO GOOD!',
-            'ingredients': `2 tablespoons reduced sodium soy sauce\n2 tablespoons freshly squeezed lime juice\n2 tablespoons canola oil, divided\n3 cloves garlic, minced2 teaspoons chili powder\n1 teaspoon ground cumin\n1 teaspoon dried oregano\n1 1/2 pounds skirt steak, cut into 1/2-inch pieces\n12 mini flour tortillas, warmed\n3/4 cup diced red onion\n1/2 cup chopped fresh cilantro leaves\n1 lime, cut into wedges`,
-            'instructions': `In a medium bowl, combine soy sauce, lime juice, 1 tablespoon canola oil, garlic, chili powder, cumin and oregano.\nIn a gallon size Ziploc bag or large bowl, combine soy sauce mixture and steak; marinate for at least 1 hour up to 4 hours, turning the bag occasionally.\nHeat remaining 1 tablespoon canola oil in a large skillet over medium high heat. Add steak and marinade, and cook, stirring often, until steak has browned and marinade has reduced, about 5-6 minutes, or until desired doneness.\nServe steak in tortillas, topped with onion, cilantro and lime.`,
-            'content': ''
+            title: 'Mexican Street Tacos',
+            category: 'Mexican',
+            username: 'Admin',
+            userId: '123',
+            postId: 'djk2190',
+            timeStamp: getFormatedDate(),
+            comments: [],
+            img: 'https://s23209.pcdn.co/wp-content/uploads/2019/04/Mexican-Street-TacosIMG_9091.jpg',
+            description: 'Easy, quick, authentic carne asada street tacos you can now make right at home! Top with onion, cilantro + fresh lime juice! SO GOOD!',
+            ingredients: `2 tablespoons reduced sodium soy sauce\n2 tablespoons freshly squeezed lime juice\n2 tablespoons canola oil, divided\n3 cloves garlic, minced2 teaspoons chili powder\n1 teaspoon ground cumin\n1 teaspoon dried oregano\n1 1/2 pounds skirt steak, cut into 1/2-inch pieces\n12 mini flour tortillas, warmed\n3/4 cup diced red onion\n1/2 cup chopped fresh cilantro leaves\n1 lime, cut into wedges`,
+            instructions: `In a medium bowl, combine soy sauce, lime juice, 1 tablespoon canola oil, garlic, chili powder, cumin and oregano.\nIn a gallon size Ziploc bag or large bowl, combine soy sauce mixture and steak; marinate for at least 1 hour up to 4 hours, turning the bag occasionally.\nHeat remaining 1 tablespoon canola oil in a large skillet over medium high heat. Add steak and marinade, and cook, stirring often, until steak has browned and marinade has reduced, about 5-6 minutes, or until desired doneness.\nServe steak in tortillas, topped with onion, cilantro and lime.`,
+            content: ''
         },
         '2189djio2':
         {
-            'title': 'Captain Marvel',
-            'category': 'Movie',
-            'username': 'Admin',
-            'userId': '123',
-            'postId': '2189djio2',
-            'timeStamp': getFormatedDate(),
-            'comments': [],
-            'img': 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRnh7mjl79LT48RdL7edizSw_mUWIThy_TBfQ&usqp=CAU',
-            'description': '',
-            'ingredients': ``,
-            'instructions': ``,
-            'content': ''
+            title: 'Captain Marvel',
+            category: 'Movie',
+            username: 'Admin',
+            userId: '123',
+            postId: '2189djio2',
+            timeStamp: getFormatedDate(),
+            comments: [],
+            img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRnh7mjl79LT48RdL7edizSw_mUWIThy_TBfQ&usqp=CAU',
+            description: '',
+            ingredients: ``,
+            instructions: ``,
+            content: ''
         }
     }
 };

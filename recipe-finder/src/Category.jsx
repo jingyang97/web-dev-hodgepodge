@@ -1,5 +1,5 @@
-import React, {useContext} from 'react';
-import {StateContext} from './App';
+import React, { useContext } from 'react';
+import { StateContext } from './App';
 import CategoryCard from './CategoryCard';
 function Category(){
     const context = useContext(StateContext);
@@ -9,7 +9,7 @@ function Category(){
             {context.state.categories.map(category => (
                 <CategoryCard
                    key = {key++}
-                   category = {category} 
+                   category = {category}
                 />
             ))}
         </div>

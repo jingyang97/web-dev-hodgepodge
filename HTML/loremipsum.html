@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>Lorem Ipsum</title>
+        <link rel="stylesheet" href="../CSS/index.css">
     </head>
     <body>
         <nav>
@@ -62,6 +63,65 @@
             </ol>
 
             <h2><a href="table.html">Table</a></h2>
+
+            <h2>Checkbox, Radio Button, Select, Range, Textarea</h2>
+            <form action="/sudo">
+                <div class="username">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="username">
+                </div>
+
+                <div class="password">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="password">
+                </div>
+
+                <div class="checkbox">
+                    <p>Choose your favorite's cats:</p>
+                        <input type="checkbox" id="sudo" name="sudo"
+                            checked>
+                        <label for="sudo">Sudo</label>
+                        <input type="checkbox" id="niannian" name="niannian" checked>
+                        <label for="niannian">Nian Nian</label>
+                </div>
+
+                <div class="radio-button">
+                    <p>What's their favorite food:</p>
+                    <input type="radio" id="fish" name="food" value="Fish"
+                    checked>
+                    <label for="fish">Fish</label>
+                    <input type="radio" id="beef" name="food" value="Beef">
+                    <label for="beef">Beef</label>
+                    <input type="radio" id="chicken-breast" name="food" value="Chicken Breast">
+                    <label for="chicken-breast">Chicken Breast</label>
+                </div>
+
+                <div class="select">
+                    <label for="pet-select">Choose a pet:</label>
+                    <select name="pets" id="pet-select">
+                        <option value="">--Please choose an option--</option>
+                        <option value="dog">Dog</option>
+                        <option value="cat">Cat</option>
+                        <option value="hamster">Hamster</option>
+                        <option value="parrot">Parrot</option>
+                        <option value="spider">Spider</option>
+                        <option value="goldfish">Goldfish</option>
+                    </select>
+                </div>
+
+                <div class="range">
+                    <p>How many sugar do you want for your Boba Milk Tea:</p>
+                    <label for="sugar">Sugar</label>
+                    <input type="range" id="sugar" name="sugar" min="0" max="100" value="70" step="10">
+                </div>
+
+                <div class="textarea">
+                    <p>This is a textarea:</p>
+                    <label for="text">Type anything here:</label>
+                    <textarea id="text" rows="7" cols="37" placeholder="type something here..."></textarea>
+                </div>
+                <button>Submit</button>
+            </form>
         </main>
     </body>
 </html>
